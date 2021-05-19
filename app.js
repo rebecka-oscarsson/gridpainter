@@ -1,9 +1,15 @@
 const path = require("path");
 const http = require("http");
 const express = require("express");
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
 const socketio = require("socket.io");
 const board = require("./moduels/board");
 const MongoClient = require('mongodb').MongoClient;
+const cors = require('cors');
+
+let paintingRoute = require("./routes/paintings");
+
 
 const app = express();
 const server = http.createServer(app);
@@ -12,7 +18,7 @@ const io = socketio(server);
 
 let items = [];
 let size = 25;
-let uri = "mongodb+srv://admin:admin@cluster0.fpfbz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+let uri = "mongodb+srv://admin:admin@cluster0.fpfbz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 
 //db connection 
@@ -22,7 +28,7 @@ client.connect(err => {
     console.log(err);
   }  
   const collection = client.db("paintings");
-  app.locals.db = collection
+  app.locals.db = collection;
 });
 //----------------
 
@@ -31,6 +37,12 @@ client.connect(err => {
 
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use(cors())
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
 
 io.on("connection", socket => {
   if(items.length == 0){board(items, size)} //if the board is empty we can create a new one else we dont do it so we dont overwrite the board
