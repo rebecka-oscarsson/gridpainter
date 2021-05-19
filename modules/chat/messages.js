@@ -1,11 +1,11 @@
 
 function formatMessage(username, text) {
-    const date = new Date()
-    
+    const date = Date().toString()
+
     return {
         username,
         text,
-        time: moment().format('h:mm')
+        time: date
     }
 }
 

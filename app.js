@@ -2,7 +2,9 @@ const path = require("path");
 const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
-const board = require("./moduels/board");
+const board = require("./modules/board");
+
+// const userchat = require("./modules/chat/chat.js")
 
 
 const app = express();
@@ -28,6 +30,7 @@ io.on("connection", socket => {
     console.log(items[update.id]);
     io.emit("newTile", update);// then we tell all the other users that a tile has beeen updated
   })
+  // userchat()
 
 });
 
