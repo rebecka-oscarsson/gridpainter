@@ -3,7 +3,7 @@ const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
 const board = require("./moduels/board");
-
+const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
 const server = http.createServer(app);
@@ -12,6 +12,19 @@ const io = socketio(server);
 
 let items = [];
 let size = 25;
+let uri = "mongodb+srv://admin:admin@cluster0.fpfbz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+
+
+//db connection 
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  if(err){
+    console.log(err);
+  }  
+  const collection = client.db("paintings");
+  app.locals.db = collection
+});
+//----------------
 
 
 
