@@ -1,8 +1,15 @@
+import { displayLoginForm, sendUsername } from './login.mjs';//Rebecka
+
 let size = 25;
 let items = [];
 let containerEL = document.getElementById("container");
-userColor = "green";
+let userColor = "green";
 const socket = io();
+
+
+displayLoginForm(containerEL);//Rebecka
+document.getElementById("loginForm").addEventListener("submit", (e)=>{e.preventDefault(); sendUsername(socket)})//Rebecka
+socket.on("userlist", userlist => console.log("logged on users:", userlist));//Rebecka
 
 socket.on("currentBoard", board => {//when we join the app we get sent the current board
     console.log(board);
