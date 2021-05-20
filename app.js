@@ -24,9 +24,8 @@ io.on("connection", socket => {
   
   if(items.length == 0){board(items, size)} //if the board is empty we can create a new one else we dont do it so we dont overwrite the board
   console.log("connected");
-  socket.on("newUser", (username) => {io.emit("loggedIn", login(users, username));//Rebecka, the login-function returns a username and color
-  socket.emit("currentBoard", items);});//Rebecka, I moved it in here so things happen in the right order
-   // this is where we send the board to a user that just connected
+  socket.on("newUser", (username) => {io.emit("loggedIn", login(users, username))});//Rebecka, the login-function returns an object with name and color or null (game full)
+  socket.emit("currentBoard", items);// this is where we send the board to a user that just connected
   socket.on("updateTile", (update) =>{ // when a user sends that they changed a tile
     items[update.id].color = update.color; // we update our tiles on the servers list 
     console.log(items[update.id]);

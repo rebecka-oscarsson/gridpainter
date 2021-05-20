@@ -10,6 +10,7 @@ export function displayLoginForm(element) {
     document.getElementById("loginForm").addEventListener("submit", sendUsername);
 }
 
+//sends the name from the login form
 function sendUsername(e) {
     e.preventDefault();
     let username = document.getElementById("nameField").value;
@@ -19,9 +20,9 @@ function sendUsername(e) {
 }
 
 export function messageIfFull(element, userObject) {
-    if (userObject) {
+    if (userObject) {//the backend returns null if the chat is full
         console.log("object sent to chat: ", userObject)
-        socket.emit('join', userObject)//for the chat
+        socket.emit('join', userObject);//for the chat
     } else {
         element.innerHTML = "the game is full";
     }
