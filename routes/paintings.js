@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 let rand = require("random-key-generator");
 
-router.post('/savepainting', function(req, res, next) {
+router.get('/savepainting', function(req, res, next) {
   let object = {
     paintingID: rand(8),
-    userCreated: req.body.username,
-    data: req.body.board
+    userCreated: "smari",//req.body.username,
+    data: req.app.locals.stuff//req.body.board
   }
   req.app.locals.db.collection("paintings").insertOne(object).then(console.log("added"));
 });

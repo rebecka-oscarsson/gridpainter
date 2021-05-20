@@ -15,7 +15,7 @@ socket.on("currentBoard", board => {//when we join the app we get sent the curre
     });
 })
 
-//makeCards();
+makeCards();
 
 socket.on("newTile", (update) =>{//when tile changes every one gets a message "newTile"
     console.log("newtile");

@@ -32,7 +32,7 @@ client.connect(err => {
 });
 //----------------
 
-
+app.locals.stuff = items
 
 
 
