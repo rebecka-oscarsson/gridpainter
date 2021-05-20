@@ -1,4 +1,4 @@
-import { displayLoginForm, sendUsername } from './login.mjs';//Rebecka
+import { displayLoginForm, messageIfFull} from '../modules/login.mjs';//Rebecka
 
 let size = 25;
 let items = [];
@@ -8,8 +8,7 @@ const socket = io();
 
 
 displayLoginForm(containerEL);//Rebecka
-document.getElementById("loginForm").addEventListener("submit", (e)=>{e.preventDefault(); sendUsername(socket)})//Rebecka
-socket.on("userlist", userlist => console.log("logged on users:", userlist));//Rebecka
+socket.on("loggedIn", userObject => {messageIfFull(containerEL, userObject)}); //Rebecka. Displays message if full, else sends userobject
 
 socket.on("currentBoard", board => {//when we join the app we get sent the current board
     console.log(board);
