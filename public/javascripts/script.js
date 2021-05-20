@@ -1,8 +1,11 @@
+import {chatFrontEnd} from '../modules/frontendchat.mjs'
+
 let size = 25;
 let items = [];
 let containerEL = document.getElementById("container");
-userColor = "green";
+const userColor = "green";
 const socket = io();
+
 
 socket.on("currentBoard", board => {//when we join the app we get sent the current board
     console.log(board);
@@ -34,3 +37,10 @@ let color = function(id, color){ // when we click we get the id and the users co
     }
     console.log(items);
 }
+
+
+
+// chatUserInterface()
+chatFrontEnd("Kalle", "blue")
+// joinChat("Kalle", "blue")
+// messageOutput()

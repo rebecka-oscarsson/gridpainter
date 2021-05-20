@@ -1,7 +1,8 @@
 const users = [
-    {id: '12312',
-    username: 'björn',
-    color: 'green'}
+//     {id: '12312',
+//     username: 'björn',
+//     color: 'green'
+// }
 ];
 
 function userJoin (id, username, color) {
@@ -29,7 +30,6 @@ function userLeave (id){
 function getUsers(){
     return users.map(user => user.username)
 }
-
 
 module.exports = {
     userJoin,
