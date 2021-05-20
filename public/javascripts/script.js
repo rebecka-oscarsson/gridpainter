@@ -1,9 +1,14 @@
+import { displayLoginForm, messageIfFull} from '../modules/login.mjs';//Rebecka
+
 let size = 25;
 let items = [];
 let containerEL = document.getElementById("container");
-userColor = "green";
+let userColor = "green";
 const socket = io();
 
+
+displayLoginForm(containerEL);//Rebecka
+socket.on("loggedIn", userObject => {messageIfFull(containerEL, userObject)}); //Rebecka. Displays message if full, else sends userobject
 
 socket.on("currentBoard", board => {//when we join the app we get sent the current board
     console.log(board);
