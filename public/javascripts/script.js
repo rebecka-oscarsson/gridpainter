@@ -4,6 +4,7 @@ let containerEL = document.getElementById("container");
 userColor = "green";
 const socket = io();
 
+
 socket.on("currentBoard", board => {//when we join the app we get sent the current board
     console.log(board);
     items = board;
@@ -13,6 +14,8 @@ socket.on("currentBoard", board => {//when we join the app we get sent the curre
         document.getElementById(element.id).addEventListener("click", function(){color(this.id,userColor);}) //and we add the event listiner to change color
     });
 })
+
+//makeCards();
 
 socket.on("newTile", (update) =>{//when tile changes every one gets a message "newTile"
     console.log("newtile");

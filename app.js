@@ -43,6 +43,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use('/paintings', paintingRoute);
+
 
 io.on("connection", socket => {
   if(items.length == 0){board(items, size)} //if the board is empty we can create a new one else we dont do it so we dont overwrite the board
@@ -52,6 +54,7 @@ io.on("connection", socket => {
     items[update.id].color = update.color; // we update our tiles on the servers list 
     console.log(items[update.id]);
     io.emit("newTile", update);// then we tell all the other users that a tile has beeen updated
+    console.log(items);
   })
 
 });
