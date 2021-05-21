@@ -8,11 +8,20 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>helloworld</h1>
     <div id="container">
 
     </div>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="javascripts/script.js" type="module"></script>
+    <script type="module" src="javascripts/script.js"></script>
+
+
+    <div id='chatContainer'>
+        <div class = 'chatUi'>
+            <div class ='inputWrapper'>
+                <input id='chatInput'type="text">
+                <button id='inputBtn'> Press me</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
