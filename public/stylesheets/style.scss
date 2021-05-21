@@ -1,4 +1,13 @@
 
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+:root {
+	--dark-color-a: #667aff;
+	--dark-color-b: #7386ff;
+	--light-color: #e6e9ff;
+	--success-color: #5cb85c;
+	--error-color: #d9534f;
+}
+
 
 * {
     margin: 0;
@@ -25,6 +34,9 @@
     background-color:"white";
   }
   
+
+//Css for chat start
+  
 #chatArea{
   position: fixed;
   right: 0;
@@ -48,23 +60,55 @@
       background: white;
       height: 10rem;
       width: 100%;
+      overflow: hidden;
+      
 
     .chatSidebar{
       padding: 1rem;
       border: 1px solid black;
       width: 35%;
+      overflow-y: scroll;
 
-      h3{
-        font-family: 'Franklin Gothic Medium';
-        font-size: 1rem;
-      }
+        h3{
+          font-family: 'Franklin Gothic Medium';
+          font-size: 1rem;
+        }
     }
 
-    .chatmsgArea{
+    #chatmsgArea{
       padding: 1rem;
       border: 1px solid black;
       width: 65%;
+      max-height: 100%;
+      overflow-y: scroll;
+
+      .message{
+        background-color: aquamarine;
+        padding: 0.5rem;
+        border: 1px solid black;
+        border-radius: 5px;
+        overflow-wrap: break-word;
+        margin-top: 1rem;
       
+        .messageWrapper{
+          span{
+            opacity: 0.7;
+            font-size: 1rem;
+            text-decoration: underline;
+          }
+
+          .chatMessage{
+            margin-top: 0.5rem;
+            padding: 0.3rem;
+            background-color: white;
+          }
+
+        }
+      }
+
+    }
+
+    .chatForm{
 
       input{
         font-size: 0.7rem;
@@ -82,7 +126,6 @@
         margin: 0.5rem;
         border-radius: 100px;
         font-size: 1rem;
-        font-weight: 600;
         background-color: #fafffa;
         color: rgb(0, 0, 0);
         &:hover{
@@ -90,12 +133,10 @@
             cursor: pointer;
             font-size: 1.03rem;
             transition: 0.3s;
+          }
         }
       }
-
     }
-    
-  }
 
   .chatForm{
 
@@ -114,9 +155,9 @@
       width: 4rem;
     }
    
-   
-
   }
 }
+
+//Css for chat end
   
   
