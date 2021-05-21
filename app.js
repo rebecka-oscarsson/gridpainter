@@ -34,9 +34,11 @@ io.on("connection", socket => {
   })
   socket.on("join", (userObject) => currentUserColor = userObject.color)//(Rebecka) stores the color for the current user
   socket.on("disconnect", () => {
-    console.log(currentUserColor, "disconnected");
+    if (currentUserColor)
+    {console.log("user with color", currentUserColor, "disconnected");
     let disconnectedUser = users.find(userObject => userObject.color === currentUserColor);//(Rebecka) finds the disconnected user in the array
-    disconnectedUser.username = null;//removes username so the color is now free for grabbing
+    disconnectedUser.username = null;}//removes username so the color is now free for grabbing
+    //disconnectedUser should be sent to the frontend here for displaying
 })
 });
 
