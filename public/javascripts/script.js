@@ -41,4 +41,4 @@ let color = function(id, color){ // when we click we get the id and the users co
     console.log(items);
 }
 
-// chatWindow()
+chatWindow()

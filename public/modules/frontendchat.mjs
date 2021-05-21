@@ -27,7 +27,6 @@ function chatFrontEnd(username, color) {
         outputMessage(user, msg)
     })
     
-
 }
 
 function outputMessage(user, msg){
@@ -54,29 +53,14 @@ chatMessage.classList ="chatMessage"
 messageWrapper.classList = "messageWrapper"
 
 
-
 //Set inner html
 userName.innerHTML = user
 chatMessage.innerHTML = msg
-
 
 //Insert element to  body
 chatmsgArea.insertAdjacentElement('beforeend', message);
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function chatWindow(){
