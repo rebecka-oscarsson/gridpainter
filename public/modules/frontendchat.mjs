@@ -13,6 +13,7 @@ function chatFrontEnd(username, color) {
     inputBtn.addEventListener('click', function () {
 
         console.log(input.value)
+        
         socket.emit('chatMessage', input.value)
     })
 
