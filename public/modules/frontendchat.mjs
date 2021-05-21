@@ -1,3 +1,5 @@
+
+
 export { chatFrontEnd, chatWindow}
 const socket = io()
 
@@ -7,42 +9,74 @@ function chatFrontEnd(username, color) {
     const input = document.getElementById('chatInput')
     const inputBtn = document.getElementById('inputBtn')
 
-
     // Message submit
     inputBtn.addEventListener('click', function () {
 
+        console.log(input.value)
         socket.emit('chatMessage', input.value)
-        input.value = ""
-        input.focus()
     })
-
 
     // Join chatroom
-
     socket.emit('join', { username, color })
+    console.log(username, color)
 
-    //Recives message from server or user
-    socket.on("message", function (msg, user) {
+    //Recives message from server
+    socket.on("message", function (user, msg) {
         console.log(msg, user);
 
-        //meddlande(msg, user)
+        outputMessage(user, msg)
     })
     
-    //recieves active users
-    socket.on('sendActiveUsers', (users) =>{
-        console.log(users)
-    })
 
 }
 
-function outputMessage(msg, user){
+function outputMessage(user, msg){
 
-//div 
-//span - user
-//span med datum
-//p - msg 
+const chatmsgArea = document.getElementById('chatmsgArea')
+
+//Create Elements  
+const message = document.createElement('div') 
+const messageWrapper = document.createElement('div') 
+const senderInfo = document.createElement('p')
+const userName = document.createElement('span')
+const chatMessage = document.createElement('p')
+
+//Set Element Structure
+message.insertAdjacentElement('beforeEnd', messageWrapper);
+messageWrapper.insertAdjacentElement('beforeEnd', senderInfo);
+senderInfo.insertAdjacentElement('beforeEnd', userName);
+messageWrapper.insertAdjacentElement('beforeEnd', chatMessage);
+
+//Set classes & id
+message.classList = "message"
+senderInfo.classList ="senderInfo"
+chatMessage.classList ="chatMessage"
+messageWrapper.classList = "messageWrapper"
+
+
+
+//Set inner html
+userName.innerHTML = user
+chatMessage.innerHTML = msg
+
+
+//Insert element to  body
+chatmsgArea.insertAdjacentElement('beforeend', message);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function chatWindow(){
@@ -74,19 +108,22 @@ function chatWindow(){
 
     //Set classes & id
     chatArea.id = "chatArea"
+    chatInput.id ="chatInput"
+    chatBtn.id ="inputBtn"
+
     chatContent.classList = "chatContent"
     chatSidebar.classList = "chatSidebar"
-    chatmsgArea .classList = "chatmsgArea"
+    chatmsgArea.id = "chatmsgArea"
     chatForm.classList = "chatForm"
-    chatTitle.innerHTML = "Chat"
     chatInput.type = "text"
-
+   
     //Set inner html
+    chatTitle.innerHTML = "Chat"
     chatBtn.innerHTML = "Send"
     roomTitle.innerHTML = "Room"
 
     //Insert element to  body
-    document.body.insertAdjacentElement('afterend', chatArea);
-    return contentArea
+    document.body.insertAdjacentElement('beforeend', chatArea);
+    return chatArea
 
 }
