@@ -39,11 +39,6 @@ io.on("connection", socket => {
 // Creates 2nd socket connect for chat
 require("./modules/chat/chat.js")(io)
 
+const PORT = process.env.PORT || 3000;
 
-
-
-
-const PORT = 3000 || process.env.PORT;
-
-
-server.listen(PORT, () => console.log("listening on port 3000"));
+server.listen(PORT, () => console.log(`listening on port ${PORT}`));
