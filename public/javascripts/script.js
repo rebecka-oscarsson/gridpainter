@@ -1,4 +1,4 @@
-import {chatFrontEnd} from '../modules/frontendchat.mjs'
+import {chatFrontEnd, chatWindow} from '../modules/frontendchat.mjs'
 
 let size = 25;
 let items = [];
@@ -38,7 +38,7 @@ let color = function(id, color){ // when we click we get the id and the users co
     console.log(items);
 }
 
-
+chatWindow()
 
 // chatUserInterface()
 chatFrontEnd("Kalle", "blue")

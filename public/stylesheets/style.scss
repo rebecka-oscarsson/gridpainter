@@ -1,0 +1,122 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
+  }
+
+
+#container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    width: 300px;
+    
+  }
+  .box{
+    height: 30px;
+    width: 30px;
+    border: 2px solid black;
+    margin: 10px;
+    background-color:"white";
+  }
+  
+#chatArea{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 350px;
+  height: 20rem;
+  padding: 0.5rem;
+  margin: 1rem;
+  background: #d1d8d3;
+  border-radius: 1.5rem;
+
+  header{
+    background: #e4e9e6;
+    padding: 1rem;
+  }
+
+  .chatContent{
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      background: white;
+      height: 10rem;
+      width: 100%;
+
+    .chatSidebar{
+      padding: 1rem;
+      border: 1px solid black;
+      width: 35%;
+
+      h3{
+        font-family: 'Franklin Gothic Medium';
+        font-size: 1rem;
+      }
+    }
+
+    .chatmsgArea{
+      padding: 1rem;
+      border: 1px solid black;
+      width: 65%;
+      
+
+      input{
+        font-size: 0.7rem;
+        height: 0.5rem;   
+        width: 7rem;
+        padding: 1rem;
+        margin: 1rem;
+        border: 3px solid rgb(233, 232, 227);
+        border-radius: 2rem;
+      }
+
+      button{
+        height: 2rem;
+        width: 6rem;
+        margin: 0.5rem;
+        border-radius: 100px;
+        font-size: 1rem;
+        font-weight: 600;
+        background-color: #fafffa;
+        color: rgb(0, 0, 0);
+        &:hover{
+            color: rgb(245, 238, 238);
+            cursor: pointer;
+            font-size: 1.03rem;
+            transition: 0.3s;
+        }
+      }
+
+    }
+    
+  }
+
+  .chatForm{
+
+    display: flex;
+    padding: 1rem;
+    background: #431349;
+    justify-content: center;
+
+    input{
+      height: 2rem;
+      width: 100%;
+      margin-right: 1rem;
+    }
+
+    button{
+      width: 4rem;
+    }
+   
+   
+
+  }
+}
+  
+  
