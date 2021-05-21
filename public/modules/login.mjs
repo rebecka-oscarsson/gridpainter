@@ -1,4 +1,6 @@
 const socket = io()
+import {chatFrontEnd} from '../modules/frontendchat.mjs'
+
 
 export function displayLoginForm(element) {
     const loginForm = `<h1>Welcome to gridpainter!</h1>
@@ -22,7 +24,8 @@ function sendUsername(e) {
 export function messageIfFull(element, userObject) {
     if (userObject) {//the backend returns null if the chat is full
         console.log("object sent to chat: ", userObject)
-        socket.emit('join', userObject);//for the chat
+        chatFrontEnd(userObject.username, userObject.color)
+        // socket.emit('saveUser', userObject);//for the chat
     } else {
         element.innerHTML = "the game is full";
     }

@@ -14,6 +14,7 @@ const io = socketio(server);
 let items = [];
 let size = 25;
 
+
 let users = [{username: null, color:"firebrick"}, {username: null, color:"darkolivegreen"}, {username: null, color:"gold"}, {username: null, color:"cornflowerblue"}]
 let currentUserColor = null;
 //Rebecka
@@ -42,7 +43,9 @@ io.on("connection", socket => {
 })
 });
 
+// Creates 2nd socket connect for chat
+require("./modules/chat/chat.js")(io)
+
 const PORT = process.env.PORT || 3000;
 
-
-server.listen(PORT, () => console.log("listening on port 3000"));
+server.listen(PORT, () => console.log(`listening on port ${PORT}`));
