@@ -1,6 +1,4 @@
 
-
-
 let makeCards = function(){
     fetch('http://localhost:3000/paintings/getallpainting')
     .then(response => response.json())
@@ -14,10 +12,12 @@ let makeCards = function(){
 
 let makeCard = function(item,name){
     let element = document.getElementById("container2");
+    console.log(item.paintingID);
     element.insertAdjacentHTML("beforeend",`<div class="card">
     ${getPicture(item.data)}
     <p>created by: ${name}</p>
     <p>id:${item.paintingID}</p>
+    <button onclick="loadBoard("${item.paintingID}")">Click me</button>
     </div>`);   
 
 }
@@ -32,4 +32,14 @@ function getPicture(tiles){
     return picture
 }
 
-
+function loadBoard(id){
+  console.log(id, "loadboard");
+  let msg = {idValue:id};
+  fetch("http://localhost:3000/paintings/getonepainting", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(msg)
+    }).then(()=>{socket.emit("getBoard")})
+}

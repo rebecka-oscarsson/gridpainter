@@ -8,7 +8,11 @@ const socket = io();
 
 
 displayLoginForm(containerEL);//Rebecka
-socket.on("loggedIn", userObject => {messageIfFull(containerEL, userObject)}); //Rebecka. Displays message if full, else sends userobject
+socket.on("loggedIn", userObject => {
+    messageIfFull(containerEL, userObject)
+    containerEL.innerHTML = "";
+    makeCards();
+}) //Rebecka. Displays message if full, else sends userobject
 
 socket.on("currentBoard", board => {//when we join the app we get sent the current board
     console.log(board);
@@ -20,7 +24,7 @@ socket.on("currentBoard", board => {//when we join the app we get sent the curre
     });
 })
 
-makeCards();
+
 
 socket.on("newTile", (update) =>{//when tile changes every one gets a message "newTile"
     console.log("newtile");

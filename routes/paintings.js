@@ -21,8 +21,9 @@ router.get("/getallpainting", function(req, res, next){
 });
 
 router.get("/getonepainting", function(req, res, next){
-  req.app.locals.db.collection("paintings").find({paintingID:req.body.id}).toArray().then(function(data){
-    res.send(data);
+  req.app.locals.db.collection("paintings").find({paintingID:req.body.idValue}).toArray().then(function(obj){
+    req.app.locals.stuff = obj.data;
+    
   })
 });
 
