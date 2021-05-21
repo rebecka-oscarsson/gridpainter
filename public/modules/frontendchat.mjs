@@ -2,8 +2,6 @@ export { chatFrontEnd, chatWindow}
 const socket = io()
 
 
-//test
-
 function chatFrontEnd(username, color) {
 
     const input = document.getElementById('chatInput')
@@ -92,6 +90,3 @@ function chatWindow(){
     return contentArea
 
 }
-
-
-

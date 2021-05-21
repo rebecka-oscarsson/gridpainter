@@ -23,14 +23,12 @@ function chat(io) {
             socket.join(room)
 
             // Welcome current user
-            socket.emit('message', `${user.username} 'Welcome to Gridpainter!`, serverName );
+            // socket.emit('message', `${user.username} 'Welcome to Gridpainter!`, serverName );
 
             // Broadcast when a user connects
             socket.broadcast
-                .to(room)
+                .to(user.room)
                 .emit('message', `${user.username} has joined the chat`, serverName )
-
-                socket.emit('sendActiveUsers', getUsers())
                 
         })
 
