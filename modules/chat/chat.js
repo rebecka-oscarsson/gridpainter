@@ -29,6 +29,8 @@ function chat(io) {
             socket.broadcast
                 .to(room)
                 .emit('message', `${user.username} has joined the chat`, serverName )
+
+                socket.emit('sendActiveUsers', getUsers())
                 
         })
 

@@ -28,7 +28,10 @@ function chatFrontEnd(username, color) {
         //meddlande(msg, user)
     })
     
-
+    //recieves active users
+    socket.on('sendActiveUsers', (users) =>{
+        console.log(users)
+    })
 
 }
 
