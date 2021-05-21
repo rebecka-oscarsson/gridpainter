@@ -12,6 +12,8 @@ function chatFrontEnd(username, color) {
     inputBtn.addEventListener('click', function () {
 
         socket.emit('chatMessage', input.value)
+        input.value = ""
+        input.focus()
     })
 
 
