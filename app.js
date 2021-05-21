@@ -33,7 +33,7 @@ io.on("connection", socket => {
     console.log(items[update.id]);
     io.emit("newTile", update);// then we tell all the other users that a tile has beeen updated
   })
-  socket.on("join", (userObject) => currentUserColor = userObject.color)//(Rebecka) stores the color for the current user
+  socket.on("saveUser", (userObject) => currentUserColor = userObject.color)//(Rebecka) stores the color for the current user
   socket.on("disconnect", () => {
     if (currentUserColor)
     {console.log("user with color", currentUserColor, "disconnected");
