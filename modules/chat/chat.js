@@ -27,7 +27,7 @@ function chat(io) {
 
             // Broadcast when a user connects
             socket.broadcast
-                .to(user.room)
+                .to(room)
                 .emit('message', `${user.username} has joined the chat`, serverName )
                 
         })

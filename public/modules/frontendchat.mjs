@@ -19,9 +19,7 @@ function chatFrontEnd(username, color) {
 
     socket.emit('join', { username, color })
 
-    console.log(username, color)
-
-    //Recives message from server
+    //Recives message from server or user
     socket.on("message", function (msg, user) {
         console.log(msg, user);
 
