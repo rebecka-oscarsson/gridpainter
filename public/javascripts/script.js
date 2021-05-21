@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import {chatFrontEnd, chatWindow} from '../modules/frontendchat.mjs'
+=======
+import {chatFrontEnd} from '../modules/frontendchat.mjs'
+import { displayLoginForm, messageIfFull} from '../modules/login.mjs';//Rebecka
+>>>>>>> 2db383969ebb83b77552f49249671aeb5da0e2b3
 
 let size = 25;
 let items = [];
@@ -6,6 +11,8 @@ let containerEL = document.getElementById("container");
 const userColor = "green";
 const socket = io();
 
+displayLoginForm(containerEL);//Rebecka
+socket.on("loggedIn", userObject => {messageIfFull(containerEL, userObject)}); //Rebecka. Displays message if full, else sends userobject
 
 socket.on("currentBoard", board => {//when we join the app we get sent the current board
     console.log(board);
@@ -37,6 +44,7 @@ let color = function(id, color){ // when we click we get the id and the users co
     }
     console.log(items);
 }
+<<<<<<< HEAD
 
 chatWindow()
 
@@ -44,3 +52,5 @@ chatWindow()
 chatFrontEnd("Kalle", "blue")
 // joinChat("Kalle", "blue")
 // messageOutput()
+=======
+>>>>>>> 2db383969ebb83b77552f49249671aeb5da0e2b3
