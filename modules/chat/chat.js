@@ -16,9 +16,13 @@ const serverName = 'Grid Painter';
 function chat(io) {
     io.on('connection', function (socket) {
 
+        console.log("hasda" + getUsers()) 
+
         // när användare joinar, skickar in ett userobject till array i users.js
         socket.on('join', ({ username, color }) => {
             const user = userJoin(socket.id, username, color)
+
+            
 
             socket.join(room)
 
@@ -29,6 +33,14 @@ function chat(io) {
             socket.broadcast
                 .to(user.room)
                 .emit('message', `${user.username} has joined the chat`, serverName )
+
+
+             // Send users
+            io.to(user.username).emit('users', {
+
+                users: getUsers()
+            });
+
                 
         })
 
@@ -36,7 +48,6 @@ function chat(io) {
         socket.on('chatMessage', (msg) => {
 
             const user = getCurrentUser(socket.id)
-
             io.to(room).emit('message', user.username, msg)
 
         })
