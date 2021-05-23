@@ -156,13 +156,15 @@ function chatWindow(){
     
     chatbox_button.insertAdjacentElement('beforeEnd', chatbox_button_img);
 
-    chatbox_button_img.src = './images/chatbox-icon.svg'
+    chatbox_button_img.src="./images/chatbox-icon.svg"
+    chatbox_button.classList = 'chatbox_button'
 
     //Set Element Structure
     chatBox.insertAdjacentElement('beforeEnd', chatBox_active);
     chatBox_active.insertAdjacentElement('beforeEnd', chatbox_header);
     chatBox_active.insertAdjacentElement('beforeEnd', chatBox_contentWrapper);
     chatBox_active.insertAdjacentElement('beforeEnd', chatbox_footer);
+    chatBox_active.insertAdjacentElement('beforeEnd', chatbox_button);
 
     //Insert element to  body
     document.body.insertAdjacentElement('beforeend', chatBox);

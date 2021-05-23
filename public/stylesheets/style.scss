@@ -207,9 +207,19 @@
         }
     }
   }
-    
 
-
+  .chatbox_button{
+    padding: 10px;
+    background: white;
+    border: none;
+    outline: none;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    margin: 1rem 0 0 17rem ;
+  }
 }
   
 
