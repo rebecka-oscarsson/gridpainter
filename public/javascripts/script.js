@@ -10,7 +10,7 @@ const socket = io();
 displayLoginForm(containerEL);//Rebecka
 socket.on("loggedIn", userObject => {
     messageIfFull(containerEL, userObject)
-    containerEL.innerHTML = "";
+    //containerEL.innerHTML = "";
     makeCards();
 }) //Rebecka. Displays message if full, else sends userobject
 

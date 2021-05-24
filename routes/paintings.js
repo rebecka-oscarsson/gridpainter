@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 let rand = require("random-key-generator");
+const board = require("../modules/board");
 
 router.get('/savepainting', function(req, res, next) {
   let object = {
@@ -20,12 +21,21 @@ router.get("/getallpainting", function(req, res, next){
   }) 
 });
 
-router.get("/getonepainting", function(req, res, next){
+router.post("/getonepainting", function(req, res, next){
   req.app.locals.db.collection("paintings").find({paintingID:req.body.idValue}).toArray().then(function(obj){
-    req.app.locals.stuff = obj.data;
-    
+    console.log(obj,"samalamastama");
+    req.app.locals.stuff = obj[0].data;
+    console.log(req.app.locals.stuff,"board");
+    req.app.locals.setBoard();
   })
 });
+
+router.get("/newpainting", function(req, res, next){
+  newBoard = [];
+  board(newBoard,25);
+  req.app.locals.stuff = newBoard;
+  req.app.locals.setBoard();
+})
 
 
 module.exports = router;
