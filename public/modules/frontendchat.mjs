@@ -16,16 +16,18 @@ function chatFrontEnd(username, color) {
     // Message submit
     chatbox_sendButton.addEventListener('click', function (e) {
         e.preventDefault()
+
+        if(chatbox_msgInput.value != ""){ 
         socket.emit('chatMessage', chatbox_msgInput.value)
 
         chatbox_msgInput.value = ""
         chatbox_msgInput.focus()
+         }
     })
 
     //shot hide chat
     chatBtn.addEventListener('click', () => {
-        // chatBoxContent.style.display = 'none';
-        chatBoxContent.classList.toggle('displayNone')
+        chatBoxContent.classList.toggle('chatNotActive')
     } )
 
     // Join chatroom
@@ -33,13 +35,11 @@ function chatFrontEnd(username, color) {
 
     //Get users
     socket.on("users",({users}) =>  {
-               
         outputUsers(users) 
     })
 
     //Recives message from server
     socket.on("message", function (user, msg, isSelf) {
-        console.log(isSelf)
         outputMessage(user, msg, isSelf)
     })
     
@@ -49,14 +49,10 @@ function chatFrontEnd(username, color) {
 // Add users to chat
 function outputUsers(users) {
 
-    // users.map(user => console.log("users output" + user))
-
     const playerArea = document.querySelector('.chatbox_playerSidebar')
 
-    // playerArea.insertAdjacentElement('beforeEnd', users);
     playerArea.innerHTML = '';
     users.forEach((user) => {
-        console.log("user i loopen" + user)
       const li = document.createElement('li');
       li.innerText = user;
       playerArea.appendChild(li);
@@ -67,7 +63,6 @@ function outputUsers(users) {
 
 //Adds message to chat
 function outputMessage(user, msg, isSelf){
-
 
 const chatbox_chatmsgArea = document.getElementById('chatbox_chatmsgArea')
 
@@ -101,7 +96,9 @@ chatbox_chatmsgArea.scrollTop = chatbox_chatmsgArea.scrollHeight
 
 //Check if message is from self
 if(isSelf){
-    messages__item.classList.add('sender')
+    messages__item.classList.add('message_sender')
+} else {
+    messages__item.classList.add('message_reciver')
 }
 
 }
@@ -121,13 +118,16 @@ function chatWindow(){
     //Chat Header
     const chatbox_header = document.createElement('div') 
     const chatbox_header_content = document.createElement('div') 
+    const chatbox_header_player_color= document.createElement('span') 
     const chatbox_header_title = document.createElement('h4')
     const chatbox_header_description = document.createElement('p')
 
     chatbox_header.classList ="chatbox_header"
+    chatbox_header_player_color.classList = "chatbox_header_player_color"
     chatbox_header_title.innerHTML = "Chat"
-    chatbox_header_description.innerHTML = "Take the opporunity to chat with your co player"
+    chatbox_header_description.innerHTML = "Take the opporunity to chat with your co-players"
 
+    chatbox_header.insertAdjacentElement('beforeEnd', chatbox_header_player_color);
     chatbox_header.insertAdjacentElement('beforeEnd', chatbox_header_content);
     chatbox_header_content.insertAdjacentElement('beforeEnd', chatbox_header_title);
     chatbox_header_content.insertAdjacentElement('beforeEnd', chatbox_header_description);

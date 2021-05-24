@@ -22,8 +22,6 @@ function userLeave (id){
 }
 
 function getUsers(){
-
-    console.log("getting user" + users.map(user => user.username))
     return users.map(user => user.username)
 }
 module.exports = {
