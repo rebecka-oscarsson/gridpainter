@@ -1,4 +1,4 @@
-function assignColor(users, username) {
+function login(users, username) {
   for (user in users) {
     if (!users[user].username) //if the object (that has a color) has no username
     {
@@ -7,7 +7,6 @@ function assignColor(users, username) {
       return users[user];
     }
   }
-  return null
 }
 
-module.exports = assignColor
+module.exports = login

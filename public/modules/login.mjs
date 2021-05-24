@@ -1,5 +1,7 @@
 const socket = io()
-import {chatFrontEnd} from '../modules/frontendchat.mjs'
+import {
+    chatFrontEnd
+} from '../modules/frontendchat.mjs'
 
 
 export function displayLoginForm(element) {
@@ -17,17 +19,15 @@ function sendUsername(e) {
     e.preventDefault();
     let username = document.getElementById("nameField").value;
     console.log("name sent to backend: ", username)
-    socket.emit("newUser",
-        username);
+    socket.emit("newUser", username);
 }
 
-export function messageIfFull(element, userObject) {
-    if (userObject) {//the backend returns null if the chat is full
-        console.log("object sent to chat: ", userObject)
-        chatFrontEnd(userObject.username, userObject.color)
-        socket.emit('saveUser', userObject);
-        //for saving the users color in app.js so that usernames can be removed on disconnect
-    } else {
-        element.innerHTML = "the game is full";
+export function messageIfFull(userObject, container) {
+    socket.on("gameFull", (msg) => {
+        container.innerHTML = msg;
+    })
+    if (userObject) {
+        console.log("sent to chat: ", userObject.username, userObject.color)
+        chatFrontEnd(userObject.username, userObject.color);
     }
 }
