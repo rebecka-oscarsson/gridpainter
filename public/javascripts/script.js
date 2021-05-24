@@ -7,8 +7,8 @@ let containerEL = document.getElementById("container");
 const userColor = "green";
 const socket = io();
 
-displayLoginForm(containerEL);//Rebecka
-socket.on("loggedIn", loggedInUser => {messageIfFull(loggedInUser, containerEL)}); //Rebecka. Displays message if full, otherwise passes on userobject
+displayLoginForm(containerEL, socket);//Rebecka
+socket.on("loggedIn", loggedInUser => {messageIfFull(loggedInUser, containerEL, socket)}); //Rebecka. Displays message if full, otherwise passes on userobject
 
 socket.on("currentBoard", board => {//when we join the app we get sent the current board
     console.log(board);
