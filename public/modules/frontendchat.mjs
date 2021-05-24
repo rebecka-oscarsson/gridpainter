@@ -9,13 +9,25 @@ function chatFrontEnd(username, color) {
 
     const chatbox_msgInput = document.getElementById('chatbox_msgInput')
     const chatbox_sendButton = document.getElementById('chatbox_sendButton')
+    const chatBtn = document.querySelector('.chatbox_button')
+    const chatBoxContent = document.querySelector('.chatBoxContent')
+
 
     // Message submit
     chatbox_sendButton.addEventListener('click', function () {
 
         console.log(chatbox_msgInput.value)
         socket.emit('chatMessage', chatbox_msgInput.value)
+
+        chatbox_msgInput.value = ""
+        chatbox_msgInput.focus()
     })
+
+    //shot hide chat
+    chatBtn.addEventListener('click', () => {
+        console.log("hej")
+        chatBoxContent.style.display = 'none';
+    } )
 
     // Join chatroom
     socket.emit('join', { username, color })
@@ -24,9 +36,7 @@ function chatFrontEnd(username, color) {
 
     //Get users
     socket.on("users",({users}) =>  {
-       
-        // outputUsers(users);
-        
+               
         console.log("USER" + users);
         outputUsers(users) 
     })
@@ -39,20 +49,22 @@ function chatFrontEnd(username, color) {
     
 }
 
+
 // Add users to chat
 function outputUsers(users) {
 
-    console.log("heehhe")
+    // users.map(user => console.log("users output" + user))
 
-    const chatmsgArea = document.getElementById('chatSidebar')
+    const playerArea = document.querySelector('.chatbox_playerSidebar')
 
-    chatmsgArea.insertAdjacentElement('beforeEnd', users);
-    // userList.innerHTML = '';
-    // users.forEach((user) => {
-    //   const li = document.createElement('li');
-    //   li.innerText = user.username;
-    //   userList.appendChild(li);
-    // });
+    // playerArea.insertAdjacentElement('beforeEnd', users);
+    playerArea.innerHTML = '';
+    users.forEach((user) => {
+        console.log("user i loopen" + user)
+      const li = document.createElement('li');
+      li.innerText = user;
+      playerArea.appendChild(li);
+    });
   }
 
 
@@ -102,6 +114,7 @@ function chatWindow(){
 
     chatBox.id = "chatBox"
     chatBox_contentWrapper.classList = "chatBox_contentWrapper"
+    chatBox_active.classList.add('chatBoxContent')
 
     //Chat Header
     const chatbox_header = document.createElement('div') 
@@ -164,7 +177,7 @@ function chatWindow(){
     chatBox_active.insertAdjacentElement('beforeEnd', chatbox_header);
     chatBox_active.insertAdjacentElement('beforeEnd', chatBox_contentWrapper);
     chatBox_active.insertAdjacentElement('beforeEnd', chatbox_footer);
-    chatBox_active.insertAdjacentElement('beforeEnd', chatbox_button);
+    chatBox.insertAdjacentElement('beforeEnd', chatbox_button);
 
     //Insert element to  body
     document.body.insertAdjacentElement('beforeend', chatBox);

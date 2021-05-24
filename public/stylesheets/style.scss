@@ -51,6 +51,7 @@
   --primary: #581B98;
 }
   
+
 #chatBox{
   position: fixed;
   right: 0;
@@ -63,6 +64,13 @@
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 
+  .chatBoxContent {
+    .displayNone{
+      display: none;
+      }
+  
+
+    
   .chatbox_header{
     background: var(--primaryGradient);
     display: flex;
@@ -86,6 +94,7 @@
     }
 
   }
+
 
   .chatBox_contentWrapper{
       display: flex;
@@ -166,7 +175,7 @@
     }
 
   }
-
+  }
 
       /* FOOTER */
 

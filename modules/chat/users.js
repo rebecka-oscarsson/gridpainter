@@ -1,9 +1,4 @@
-const users = [
-//     {id: '12312',
-//     username: 'björn',
-//     color: 'green'
-// }
-];
+const users = [];
 
 
 function userJoin (id, username, color) {
