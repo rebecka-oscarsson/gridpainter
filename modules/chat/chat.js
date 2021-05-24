@@ -47,11 +47,11 @@ function chat(io) {
 
             const user = getCurrentUser(socket.id)
             console.log("chat.js" + socket.id)
-            io.to(room).emit('message', user.username, msg)
+            const isSelf = 
+            socket.emit('message', user.username, msg, true)
+            socket.broadcast.to(room).emit('message', user.username, msg, false)
 
         })
-
-        console.log("Chat socket Connect")
 
 
         // Disconnect (When user leaves)

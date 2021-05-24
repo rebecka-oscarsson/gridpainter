@@ -174,4 +174,10 @@
   cursor: pointer;
   margin: 1rem 0 0 17rem;
 }
+
+.displayNone{
+  display: none;
+  border: 5px solid black ;
+  }
+
 /*# sourceMappingURL=style.css.map */

@@ -14,9 +14,8 @@ function chatFrontEnd(username, color) {
 
 
     // Message submit
-    chatbox_sendButton.addEventListener('click', function () {
-
-        console.log(chatbox_msgInput.value)
+    chatbox_sendButton.addEventListener('click', function (e) {
+        e.preventDefault()
         socket.emit('chatMessage', chatbox_msgInput.value)
 
         chatbox_msgInput.value = ""
@@ -25,26 +24,23 @@ function chatFrontEnd(username, color) {
 
     //shot hide chat
     chatBtn.addEventListener('click', () => {
-        console.log("hej")
-        chatBoxContent.style.display = 'none';
+        // chatBoxContent.style.display = 'none';
+        chatBoxContent.classList.toggle('displayNone')
     } )
 
     // Join chatroom
     socket.emit('join', { username, color })
-    console.log(username, color)
-
 
     //Get users
     socket.on("users",({users}) =>  {
                
-        console.log("USER" + users);
         outputUsers(users) 
     })
 
     //Recives message from server
-    socket.on("message", function (user, msg) {
-        console.log(msg, user);
-        outputMessage(user, msg)
+    socket.on("message", function (user, msg, isSelf) {
+        console.log(isSelf)
+        outputMessage(user, msg, isSelf)
     })
     
 }
@@ -70,7 +66,8 @@ function outputUsers(users) {
 
 
 //Adds message to chat
-function outputMessage(user, msg){
+function outputMessage(user, msg, isSelf){
+
 
 const chatbox_chatmsgArea = document.getElementById('chatbox_chatmsgArea')
 
@@ -97,12 +94,15 @@ messages__item.classList = "messages__item"
 userName.innerHTML = user
 chatMessage.innerHTML = msg
 
-console.log(msg)
-
 //Insert element to  body
 chatbox_chatmsgArea.insertAdjacentElement('beforeend', messages__item);
 
 chatbox_chatmsgArea.scrollTop = chatbox_chatmsgArea.scrollHeight
+
+//Check if message is from self
+if(isSelf){
+    messages__item.classList.add('sender')
+}
 
 }
 
@@ -153,6 +153,7 @@ function chatWindow(){
 
     //Chat Footer Area
     const chatbox_footer = document.createElement('footer')
+    const chatbox_form = document.createElement('form')
     const chatbox_msgInput = document.createElement('Input')
     const chatbox_sendButton = document.createElement('button')
 
@@ -160,11 +161,15 @@ function chatWindow(){
     chatbox_sendButton.id ="chatbox_sendButton"
     chatbox_msgInput.type = "text"
     chatbox_footer.classList = "chatbox_footer"
+    chatbox_sendButton.type = 'submit'
+    chatbox_msgInput.required = true
+
 
     chatbox_sendButton.innerHTML = "Send"
 
-    chatbox_footer.insertAdjacentElement('beforeEnd', chatbox_msgInput);
-    chatbox_footer.insertAdjacentElement('beforeEnd', chatbox_sendButton );
+    chatbox_form.insertAdjacentElement('beforeEnd', chatbox_msgInput);
+    chatbox_form.insertAdjacentElement('beforeEnd', chatbox_sendButton );
+    chatbox_footer.insertAdjacentElement('beforeEnd', chatbox_form );
 
     //Chat Box Button
     const chatbox_button = document.createElement('button')

@@ -1,8 +1,6 @@
 const users = [];
 
-
 function userJoin (id, username, color) {
-    
     
     const user = {id, username, color};
     
@@ -28,7 +26,6 @@ function getUsers(){
     console.log("getting user" + users.map(user => user.username))
     return users.map(user => user.username)
 }
-
 module.exports = {
     userJoin,
     userLeave,
