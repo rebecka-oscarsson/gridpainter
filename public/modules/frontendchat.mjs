@@ -102,6 +102,8 @@ console.log(msg)
 //Insert element to  body
 chatbox_chatmsgArea.insertAdjacentElement('beforeend', messages__item);
 
+chatbox_chatmsgArea.scrollTop = chatbox_chatmsgArea.scrollHeight
+
 }
 
 
@@ -136,6 +138,7 @@ function chatWindow(){
     chatbox_chatmsgArea.id = "chatbox_chatmsgArea"
 
     chatBox_contentWrapper.insertAdjacentElement('afterbegin', chatbox_chatmsgArea);
+
 
     //Chat Player Area
     const chatbox_playerSidebar = document.createElement('div')
