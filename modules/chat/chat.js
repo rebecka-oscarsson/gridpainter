@@ -20,15 +20,23 @@ function chat(io) {
         socket.on('join', ({ username, color }) => {
             const user = userJoin(socket.id, username, color)
 
+    
             socket.join(room)
 
             // Welcome current user
-            socket.emit('message', `${user.username} 'Welcome to Gridpainter!`, serverName );
+            // socket.emit('message', `${user.username} 'Welcome to Gridpainter!`, serverName );
 
             // Broadcast when a user connects
             socket.broadcast
-                .to(user.room)
-                .emit('message', `${user.username} has joined the chat`, serverName )
+                .to(room)
+                .emit('message', serverName, `${user.username} has joined the chat` )
+
+
+             // Send users
+            io.to(room).emit('users', {
+                users: getUsers()
+            });
+
                 
         })
 
@@ -36,12 +44,10 @@ function chat(io) {
         socket.on('chatMessage', (msg) => {
 
             const user = getCurrentUser(socket.id)
-
-            io.to(room).emit('message', user.username, msg)
+            socket.emit('message', user.username, msg, true)
+            socket.broadcast.to(room).emit('message', user.username, msg, false)
 
         })
-
-        console.log("Chat socket Connect")
 
 
         // Disconnect (When user leaves)
@@ -50,7 +56,7 @@ function chat(io) {
 
             if (user) {
                 io.to(room).emit(
-                    'message', `${user.username} has left the chat`, serverName);
+                    'message',  serverName, `${user.username} has left the chat` );
 
                 // Send users and room info
                 io.to(room).emit('roomUsers', {

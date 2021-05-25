@@ -1,17 +1,11 @@
-const users = [
-//     {id: '12312',
-//     username: 'björn',
-//     color: 'green'
-// }
-];
+const users = [];
 
 function userJoin (id, username, color) {
+    
     const user = {id, username, color};
     
     users.push(user)
-    
-    console.log(user);
-    
+       
     return user;
 }
 
@@ -30,10 +24,10 @@ function userLeave (id){
 function getUsers(){
     return users.map(user => user.username)
 }
-
 module.exports = {
     userJoin,
     userLeave,
     getCurrentUser,
     getUsers
 }
+

@@ -4,6 +4,7 @@ const express = require("express");
 const socketio = require("socket.io");
 const board = require("./modules/board");
 const login = require("./modules/login");//Rebecka
+const { userJoin, userLeave, getCurrentUser, getUsers } = require('./modules/chat/users.js')
 
 
 const app = express();
