@@ -81,7 +81,7 @@ io.on("connection", socket => {
 });
 
 // Creates 2nd socket connect for chat
-require("./modules/chat/chat.js")(io)
+//require("./modules/chat/chat.js")(io)
 
 const PORT = process.env.PORT || 3000;
 
