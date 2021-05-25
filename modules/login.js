@@ -5,8 +5,9 @@ function login(users, username, socket, io) {
       users[user].username = username; //grab the spot
       console.log("colors assigned: ", users);
       loggedInUser = users[user];
-      io.emit("loggedIn", loggedInUser);
-      return loggedInUser;
+      io.emit("loggedIn", loggedInUser);//used for passing on all logged in users to the chat
+      socket.emit("userColor", users[user].color);//used for storing usercolor in frontend
+      return loggedInUser
     }
   }
   socket.emit("gameFull", "Sorry, game is full");

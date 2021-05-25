@@ -36,8 +36,8 @@ io.on("connection", socket => {
   })
   socket.on("disconnect", () => {
     if (currentUserColor)
-    {console.log("user with color", currentUserColor, "disconnected");
-    let disconnectedUser = users.find(userObject => userObject.color === currentUserColor);//(Rebecka) finds the disconnected user in the array
+    {let disconnectedUser = users.find(userObject => userObject.color === currentUserColor);//(Rebecka) finds the disconnected user in the array
+    console.log(disconnectedUser.username, "with color", disconnectedUser.color, "disconnected");
     disconnectedUser.username = null;}//removes username so the color is now free for grabbing
     //disconnectedUser should be sent to the frontend here for displaying
 })

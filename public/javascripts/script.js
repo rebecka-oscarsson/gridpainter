@@ -4,12 +4,13 @@ import { displayLoginForm} from '../modules/login.mjs';//Rebecka
 let size = 25;
 let items = [];
 let containerEL = document.getElementById("container");
-const userColor = "green";
+let userColor = "green";
 const socket = io();
 
 displayLoginForm(containerEL, socket);//Rebecka
 socket.on("gameFull", msg => {container.innerHTML = msg;})
 socket.on("loggedIn", loggedInUser => {console.log("sent to chat: ", loggedInUser.username, loggedInUser.color);
+socket.on("userColor", color => userColor = color);//stores color for individual user
 chatFrontEnd(loggedInUser.username, loggedInUser.color);})//Rebecka. Displays message if full, otherwise passes on userobject
 
 socket.on("currentBoard", board => {//when we join the app we get sent the current board
