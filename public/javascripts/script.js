@@ -11,7 +11,7 @@ displayLoginForm(containerEL, socket);//Rebecka
 socket.on("gameFull", msg => {container.innerHTML = msg;})
 socket.on("loggedIn", loggedInUser => {console.log("sent to chat: ", loggedInUser.username, loggedInUser.color);
 socket.on("userColor", color => userColor = color);//stores color for individual user
-chatFrontEnd(loggedInUser.username, loggedInUser.color);})//Rebecka. Displays message if full, otherwise passes on userobject
+chatFrontEnd(loggedInUser.username, loggedInUser.color, socket);})//Rebecka. Passes on user to chat
 
 socket.on("currentBoard", board => {//when we join the app we get sent the current board
     console.log(board);
