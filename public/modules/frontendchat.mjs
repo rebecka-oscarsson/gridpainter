@@ -1,11 +1,12 @@
 
 
 
-export { chatFrontEnd, chatWindow}
-const socket = io()
+// export { chatFrontEnd, chatWindow}
+// const socket = io()
 
 
-function chatFrontEnd(username, color) {
+export function chatFrontEnd(username, color, socket) {
+    console.log(socket)
 
     const chatbox_msgInput = document.getElementById('chatbox_msgInput')
     const chatbox_sendButton = document.getElementById('chatbox_sendButton')
@@ -104,7 +105,7 @@ if(isSelf){
 }
 
 
-function chatWindow(){
+export function chatWindow(){
 
     //Create Elements   
     const chatBox = document.createElement('section')
