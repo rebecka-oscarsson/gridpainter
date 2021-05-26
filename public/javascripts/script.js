@@ -4,6 +4,7 @@ import { displayLoginForm} from '../modules/login.mjs';//Rebecka
 let size = 25;
 let items = [];
 let containerEL = document.getElementById("container");
+let boardEL = document.getElementById("board");
 let userColor = "green";
 const socket = io();
 
@@ -17,7 +18,7 @@ socket.on("currentBoard", board => {//when we join the app we get sent the curre
     console.log(board);
     items = board;
     items.forEach(element => { //we go over all the objects that were sent to us
-        containerEL.insertAdjacentHTML("beforeend",element.html)//we create each square 
+        boardEL.insertAdjacentHTML("beforeend",element.html)//we create each square 
         document.getElementById(element.id).style.backgroundColor = element.color //we sert the current color value
         document.getElementById(element.id).addEventListener("click", function(){color(this.id,userColor);}) //and we add the event listiner to change color
     });
