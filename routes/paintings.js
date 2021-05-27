@@ -6,7 +6,7 @@ const board = require("../modules/board");
 router.post('/savepainting', function(req, res, next) {
   let object = {
     paintingID: rand(8),
-    userCreated: "smari",//req.body.username,
+    userCreated: req.body.username,
     data: req.app.locals.stuff//req.body.board
   }
   req.app.locals.db.collection("paintings").insertOne(object).then(console.log("added"));
@@ -32,7 +32,7 @@ router.post("/getonepainting", function(req, res, next){
 
 router.get("/newpainting", function(req, res, next){
   newBoard = [];
-  board(newBoard,25);
+  board(newBoard,225);
   req.app.locals.stuff = newBoard;
   req.app.locals.getBoard();
 })

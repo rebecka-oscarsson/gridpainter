@@ -19,7 +19,7 @@ const io = socketio(server);
 
 
 let items = [];
-let size = 25;
+
 let uri = "mongodb+srv://admin:admin@cluster0.fpfbz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 
@@ -46,17 +46,17 @@ app.use('/paintings', paintingRoute);
 
 
 let size = 225;
-
+app.locals.stuff = items;
 let users = [{username: null, color:"firebrick", socketID: null}, {username: null, color:"darkolivegreen", socketID: null}, {username: null, color:"gold", socketID: null}, {username: null, color:"cornflowerblue", socketID: null}]
 
 app.use(express.static(path.join(__dirname, "public")));
 
 io.on("connection", socket => {
-  
+
   if(items.length == 0){board(items, size)} //if the board is empty we can create a new one else we dont do it so we dont overwrite the board
   console.log("connected");
   socket.on("newUser", (username) => {login(users, username, socket, io)
-    socket.emit("currentBoard", items);// this is where we send the board to a user that just connected
+    socket.emit("currentBoard", app.locals.stuff);// this is where we send the board to a user that just connected
   });//(Rebecka) The login function adds username and socket id to an object in users-array
   
   socket.on("updateTile", (update) =>{ // when a user sends that they changed a tile
@@ -67,7 +67,7 @@ io.on("connection", socket => {
 
   
   app.locals.getBoard = function(){
-    socket.emit("currentBoard", items);// this is where we send the board to a user that just connected
+    io.emit("currentBoard", app.locals.stuff);// this is where we send the board to a user that just connected
   }
 
   socket.on("disconnect", () => {

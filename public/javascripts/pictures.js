@@ -33,7 +33,7 @@ let makeCard = function(item,name){
     <p>id:${item.paintingID}</p>
     <button id="bott">Click me</button>
     </div>`);   
-    document.getElementById("bott").addEventListener("click",()=>{loadBoard(id);element.innerHTML = "";});
+    document.getElementById("bott").addEventListener("click",()=>{loadBoard(id);});
 }
 
 function getPicture(tiles){
