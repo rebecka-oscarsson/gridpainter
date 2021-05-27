@@ -18,7 +18,7 @@ let makeNewCard = function(){
   <button id="newButton">Click me</button>
   </div>`);   
   document.getElementById("newButton").addEventListener("click",()=>{
-    fetch("http://localhost:3000/paintings/newpainting").then(()=>{console.log("lol");})
+    fetch("http://localhost:3000/paintings/newpainting");
       
   });
   
@@ -28,15 +28,14 @@ let makeCard = function(item,name){
     let element = document.getElementById("container");
     let id = item.paintingID;
     element.insertAdjacentHTML("beforeend",`<div class="card">
-
     <p>created by: ${name}</p>
     <p>id:${item.paintingID}</p>
-    <button id="bott">Click me</button>
+    <button id="${item.paintingID}">Click me</button>
     </div>`);   
-    document.getElementById("bott").addEventListener("click",()=>{loadBoard(id);});
+    document.getElementById(item.paintingID).addEventListener("click",()=>{loadBoard(id);});
 }
 
-function getPicture(tiles){
+/*function getPicture(tiles){
     let picture = `<div id="picture">`
     console.log(tiles[1]);
     for (let i = 0; i < tiles.length; i++) {
@@ -44,7 +43,7 @@ function getPicture(tiles){
     }
     picture += "</div>"
     return picture
-}
+}*/
 
 function loadBoard(id){
   console.log(id, "loadboard");

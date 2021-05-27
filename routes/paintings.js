@@ -12,6 +12,8 @@ router.post('/savepainting', function(req, res, next) {
   req.app.locals.db.collection("paintings").insertOne(object).then(console.log("added"));
 });
 
+
+
 router.get("/getallpainting", function(req, res, next){
   req.app.locals.db.collection("paintings").find().toArray()
   .then(resaults => {
@@ -23,9 +25,9 @@ router.get("/getallpainting", function(req, res, next){
 
 router.post("/getonepainting", function(req, res, next){
   req.app.locals.db.collection("paintings").find({paintingID:req.body.idValue}).toArray().then(function(obj){
-    console.log(obj,"samalamastama");
+    //console.log(obj,"samalamastama");
     req.app.locals.stuff = obj[0].data;
-    console.log(req.app.locals.stuff,"board");
+   // console.log(req.app.locals.stuff,"board");
     req.app.locals.getBoard();
   })
 });
