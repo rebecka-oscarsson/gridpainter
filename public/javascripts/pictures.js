@@ -18,7 +18,7 @@ let makeNewCard = function(){
   <button id="newButton">Click me</button>
   </div>`);   
   document.getElementById("newButton").addEventListener("click",()=>{
-    fetch("http://localhost:3000/paintings/newpainting");
+    fetch("http://localhost:3000/paintings/newpainting").then();
       
   });
   

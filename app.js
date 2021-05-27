@@ -10,7 +10,8 @@ const cors = require('cors');
 let paintingRoute = require("./routes/paintings");
 const board = require("./modules/board");
 const login = require("./modules/login");//Rebecka
-const { userJoin, userLeave, getCurrentUser, getUsers } = require('./modules/chat/users.js')
+const { userJoin, userLeave, getCurrentUser, getUsers } = require('./modules/chat/users.js');
+const { setTimeout } = require("timers");
 
 
 const app = express();
@@ -48,6 +49,7 @@ app.use('/paintings', paintingRoute);
 let size = 225;
 app.locals.stuff = items;
 let users = [{username: null, color:"firebrick", socketID: null}, {username: null, color:"darkolivegreen", socketID: null}, {username: null, color:"gold", socketID: null}, {username: null, color:"cornflowerblue", socketID: null}]
+app.locals.allPaintings = [];
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -67,6 +69,7 @@ io.on("connection", socket => {
 
   
   app.locals.getBoard = function(){
+    setTimeout(function(){console.log("hello world");  }, 3000);
     io.emit("currentBoard", app.locals.stuff);// this is where we send the board to a user that just connected
   }
 
