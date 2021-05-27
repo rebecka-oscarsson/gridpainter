@@ -46,10 +46,6 @@ function outputUsers(users) {
 
     const playerArea = document.querySelector('.playerSidebar_players')
 
-    // console.log(users)
-    // console.log(users[0].username)
-    // console.log(users[0].color)
-
     playerArea.innerHTML = '';
     users.forEach((user) => {
 
@@ -100,9 +96,9 @@ function outputMessage(user, msg, isSelf) {
 
     //Check if message is from self
     if (isSelf) {
-        messages__item.classList.add('message_reciver')
-    } else {
         messages__item.classList.add('message_sender')
+    } else {
+        messages__item.classList.add('message_reciver')
     }
 
 }
