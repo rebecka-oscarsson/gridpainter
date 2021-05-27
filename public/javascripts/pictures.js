@@ -1,7 +1,7 @@
 
 let makeCards = function(){
     //document.getElementById("container").innerHTML = "";
-    fetch('http://gridpainter.herokuapp.com/getallpainting')
+    fetch('http://gridpainter.herokuapp.com/paintings/getallpainting')
     .then(response => response.json())
     .then(function(data){
       for (let i = 0; i < data.length; i++) {
@@ -18,7 +18,7 @@ let makeNewCard = function(){
   <button id="newButton">Click me</button>
   </div>`);   
   document.getElementById("newButton").addEventListener("click",()=>{
-    fetch("http://gridpainter.herokuapp.com/newpainting").then((err)=>{console.log(err);});
+    fetch("http://gridpainter.herokuapp.com/paintings/newpainting").then((err)=>{console.log(err);});
       
   });
   
