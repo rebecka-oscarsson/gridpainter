@@ -6,27 +6,20 @@
 
 #container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
+  width: 300px;
   font-family: "Roboto", sans-serif;
 }
 
 .box {
-  border-left: solid 1px rgba(0, 0, 0, 0.5);
-  border-top: solid 1px rgba(0, 0, 0, 0.5);
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+  height: 30px;
+  width: 30px;
+  border: 2px solid black;
+  margin: 10px;
   background-color: "white";
-}
-
-#board {
-  display: grid;
-  grid-template-rows: repeat(15, 1fr);
-  grid-template-columns: repeat(15, 1fr);
-  grid-gap: 1px;
-  width: 70vh;
-  height: 70vh;
 }
 
 /* Chatbox Start */
@@ -122,6 +115,25 @@
 
 #chatBox .chatBoxContent .chatBox_contentWrapper .chatbox_playerSidebar h3 {
   font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+#chatBox .chatBoxContent .chatBox_contentWrapper .chatbox_playerSidebar span {
+  height: 15px;
+  width: 15px;
+  color: #9c2626;
+  background-color: #509b46;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+#chatBox .chatBoxContent .chatBox_contentWrapper .chatbox_playerSidebar li {
+  display: inline-block;
+  list-style-type: none;
+  text-align: center;
+  margin: 0.3rem 0;
+  font-weight: 500;
 }
 
 #chatBox .chatBoxContent .chatBox_contentWrapper #chatbox_chatmsgArea {
@@ -135,36 +147,39 @@
   margin-bottom: 10px;
   background: #E0E0E0;
   padding: 8px 12px 0px 12px;
-  max-width: 60%;
+  max-width: 75%;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
 }
 
 #chatBox .chatBoxContent .chatBox_contentWrapper #chatbox_chatmsgArea .messages__item span {
-  opacity: 0.8;
+  opacity: 0.9;
   font-size: 1rem;
-  color: black;
+  color: white;
   text-decoration: underline;
 }
 
 #chatBox .chatBoxContent .chatBox_contentWrapper #chatbox_chatmsgArea .messages__item .chatMessage {
   margin-bottom: 0.5rem;
   padding: 0.3rem;
-  word-break: break-all;
+  font-size: 0.6;
+  word-break: break-word;
 }
 
 #chatBox .chatBoxContent .chatBox_contentWrapper #chatbox_chatmsgArea .message_sender {
-  background-color: #E0E0E0;
-  color: black;
-  margin-right: auto;
-  padding-right: 1rem;
-}
-
-#chatBox .chatBoxContent .chatBox_contentWrapper #chatbox_chatmsgArea .message_reciver {
   background: var(--primary);
   color: white;
   margin-left: auto;
+  padding-right: 1rem;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 0px;
+}
+
+#chatBox .chatBoxContent .chatBox_contentWrapper #chatbox_chatmsgArea .message_reciver {
+  background-color: #E0E0E0;
+  color: #000000;
+  margin-right: auto;
   padding-right: 1rem;
 }
 
