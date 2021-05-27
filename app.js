@@ -13,7 +13,7 @@ const io = socketio(server);
 
 
 let items = [];
-let size = 25;
+let size = 225;
 
 let users = [{username: null, color:"firebrick", socketID: null}, {username: null, color:"darkolivegreen", socketID: null}, {username: null, color:"gold", socketID: null}, {username: null, color:"cornflowerblue", socketID: null}]
 
