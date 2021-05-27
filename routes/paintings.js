@@ -3,6 +3,7 @@ var router = express.Router();
 let rand = require("random-key-generator");
 const board = require("../modules/board");
 let pictures = [];
+let local = "http://localhost:3000/";
 
 
 router.post('/savepainting', function(req, res, next) {
@@ -11,7 +12,10 @@ router.post('/savepainting', function(req, res, next) {
     userCreated: req.body.username,
     data: req.app.locals.stuff//req.body.board
   }
-  req.app.locals.db.collection("paintings").insertOne(object).then(console.log("added"));
+  req.app.locals.db.collection("paintings").insertOne(object).then(()=>{
+    console.log("added");
+    req.app.locals.updateSave(object);
+  });
 });
 
 

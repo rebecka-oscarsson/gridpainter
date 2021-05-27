@@ -8,6 +8,7 @@ let boardEL = document.getElementById("board");
 let userColor = "green";
 const socket = io();
 
+let localhost = "http://localhost:3000"
 
 displayLoginForm(containerEL, socket);//Rebecka
 socket.on("gameFull", msg => {container.innerHTML = msg;})
@@ -38,6 +39,10 @@ socket.on("newTile", (update) =>{//when tile changes every one gets a message "n
     document.getElementById(update.id).style.backgroundColor = update.color;//we get what tile was changed and update that tile on the front end
   })
 
+socket.on("updateSave",(item)=>{
+    makeCard(item,item.userCreated);
+})
+
 
 
 let color = function(id, color){ // when we click we get the id and the users color
@@ -57,7 +62,7 @@ let saveBtn = function(username){
     document.getElementById("container").insertAdjacentHTML('beforeend',html);
     document.getElementById("saveBtn").addEventListener("click",function(){
         let msg = {username:username};
-        fetch("http://gridpainter.herokuapp.com/paintings/savepainting", {
+        fetch(localhost + "/paintings/savepainting", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
