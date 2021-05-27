@@ -3,7 +3,7 @@ var router = express.Router();
 let rand = require("random-key-generator");
 const board = require("../modules/board");
 
-router.get('/savepainting', function(req, res, next) {
+router.post('/savepainting', function(req, res, next) {
   let object = {
     paintingID: rand(8),
     userCreated: "smari",//req.body.username,
@@ -26,7 +26,7 @@ router.post("/getonepainting", function(req, res, next){
     console.log(obj,"samalamastama");
     req.app.locals.stuff = obj[0].data;
     console.log(req.app.locals.stuff,"board");
-    req.app.locals.setBoard();
+    req.app.locals.getBoard();
   })
 });
 
@@ -34,7 +34,7 @@ router.get("/newpainting", function(req, res, next){
   newBoard = [];
   board(newBoard,25);
   req.app.locals.stuff = newBoard;
-  req.app.locals.setBoard();
+  req.app.locals.getBoard();
 })
 
 

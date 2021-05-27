@@ -9,11 +9,12 @@ const socket = io();
 
 displayLoginForm(containerEL, socket);//Rebecka
 socket.on("gameFull", msg => {container.innerHTML = msg;})
-socket.on("loggedIn", loggedInUser => {console.log("sent to chat: ", loggedInUser.username, loggedInUser.color);
+socket.on("loggedIn", loggedInUser => {
+console.log("sent to chat: ", loggedInUser.username, loggedInUser.color);
 socket.on("userColor", color => userColor = color);//stores color for individual user
-chatFrontEnd(loggedInUser.username, loggedInUser.color, socket);})//Rebecka. Displays message if full, otherwise passes on userobject
-
-
+chatFrontEnd(loggedInUser.username, loggedInUser.color, socket);
+makeCards();
+})//Rebecka. Displays message if full, otherwise passes on userobject
 
 socket.on("currentBoard", board => {//when we join the app we get sent the current board
     console.log(board);
@@ -24,8 +25,6 @@ socket.on("currentBoard", board => {//when we join the app we get sent the curre
         document.getElementById(element.id).addEventListener("click", function(){color(this.id,userColor);}) //and we add the event listiner to change color
     });
 })
-
-
 
 socket.on("newTile", (update) =>{//when tile changes every one gets a message "newTile"
     console.log("newtile");
@@ -48,6 +47,5 @@ let color = function(id, color){ // when we click we get the id and the users co
     console.log(items);
 }
 
-
+chatWindow()
 // chatFrontEnd()
-

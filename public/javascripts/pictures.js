@@ -1,6 +1,6 @@
 
 let makeCards = function(){
-    document.getElementById("container").innerHTML = "";
+    //document.getElementById("container").innerHTML = "";
     fetch('http://localhost:3000/paintings/getallpainting')
     .then(response => response.json())
     .then(function(data){
@@ -19,7 +19,7 @@ let makeNewCard = function(){
   </div>`);   
   document.getElementById("newButton").addEventListener("click",()=>{
     fetch("http://localhost:3000/paintings/newpainting").then(()=>{console.log("lol");})
-    element.innerHTML = "";  
+      
   });
   
 }
@@ -28,7 +28,7 @@ let makeCard = function(item,name){
     let element = document.getElementById("container");
     let id = item.paintingID;
     element.insertAdjacentHTML("beforeend",`<div class="card">
-    ${getPicture(item.data)}
+
     <p>created by: ${name}</p>
     <p>id:${item.paintingID}</p>
     <button id="bott">Click me</button>
