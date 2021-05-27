@@ -49,6 +49,14 @@ function chat(io) {
 
         })
 
+        socket.on('chatBubble', () => {
+
+            console.log("chatBubble")
+
+            socket.broadcast.to(room).emit('chatBubbleStatus', true)
+
+        })
+
 
         // Disconnect (When user leaves)
         socket.on('disconnect', () => {

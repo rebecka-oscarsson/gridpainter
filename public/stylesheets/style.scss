@@ -1,3 +1,5 @@
+@import '_typing.scss';
+
 * {
   margin: 0;
   padding: 0;
@@ -55,6 +57,7 @@
      border-top-left-radius: 20px;
      border-top-right-radius: 20px;
      background: #f9f9f9;
+     background: white;
      font-family: 'Nunito', sans-serif;
  
    .chatNotActive{
@@ -157,7 +160,7 @@
          max-height: 100%;
          overflow-y: scroll;
          
-         .messages__item{
+         .messages_item{
            margin-bottom: 10px;
            background: #E0E0E0; 
            padding: 8px 12px 0px 12px;
@@ -172,15 +175,15 @@
              font-size: 1rem;
              color: white;
              text-decoration: underline;
-           }
+            }
  
            .chatMessage{
              margin-bottom: 0.5rem;
              padding: 0.3rem;
              font-size: 0.6;
              word-break: break-word;
-           }
-         }
+            }
+          }
  
          .message_sender{
            background: var(--primary);
@@ -189,15 +192,17 @@
            padding-right: 1rem;
            border-bottom-right-radius: 20px;
            border-bottom-left-radius: 0px;
-         }
+          }
  
          .message_reciver{
            background-color: #E0E0E0;
            color: #000000;
            margin-right: auto;
            padding-right: 1rem;
-         }
-       }
+          }
+
+          @include typing()
+        }
      }
    }
  
@@ -235,7 +240,6 @@
          box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
          cursor: pointer;
          &:hover{
-           // color: rgb(245, 238, 238);
            cursor: pointer;
            font-size: 1.03rem;
            transition: 0.3s;

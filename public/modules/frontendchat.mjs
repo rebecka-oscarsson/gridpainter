@@ -35,10 +35,71 @@ export function chatFrontEnd(username, color, socket) {
 
     //Recives message from server
     socket.on("message", function (user, msg, isSelf) {
+
+        if(document.querySelector(".message_item_typing")){
+
+            //Remove typing element
+            document.querySelector(".message_item_typing").remove()
+        
+        }
         
         outputMessage(user, msg, isSelf)
     })
+
+     //Recives typing status from server
+     socket.on("chatBubbleStatus", function (status) {
+        
+        console.log("testing status" + status)
+
+        if(!document.querySelector(".message_item_typing")){
+
+            chatTyping();
+
+            setTimeout(function(){ 
+                
+                //Remove typing element
+                document.querySelector(".message_item_typing").remove()
+                
+            }, 3000);
+
+        }
+        
+    })
+
+
+    document.querySelector("#chatbox_msgInput").addEventListener('keypress', function(e){
+        if(e.target.value!= ""){
+            console.log("test")
+            socket.emit('chatBubble')
+        }
+    })
+
+
 }
+
+// Chek if a key is entered 
+
+function onKeyDownNotEnter(){
+  if(typing == false) {
+    typing = true
+    socket.emit(typingMessage);
+    timeout = setTimeout(timeoutFunction, 5000);
+  } else {
+    clearTimeout(timeout);
+    timeout = setTimeout(timeoutFunction, 5000);
+  }
+}
+
+var typing = false;
+var timeout = undefined;
+
+function timeoutFunction(){
+  typing = false;
+  socket.emit(noLongerTypingMessage);
+}
+
+
+
 
 
 // Add users to chat
@@ -68,41 +129,60 @@ function outputMessage(user, msg, isSelf) {
 
     //Create Elements  
     const message = document.createElement('div')
-    const messages__item = document.createElement('div')
+    const messages_item = document.createElement('div')
     const senderInfo = document.createElement('p')
     const userName = document.createElement('span')
     const chatMessage = document.createElement('p')
 
     //Set Element Structure
-    message.insertAdjacentElement('beforeEnd', messages__item);
-    messages__item.insertAdjacentElement('beforeEnd', senderInfo);
+    message.insertAdjacentElement('beforeEnd', messages_item);
+    messages_item.insertAdjacentElement('beforeEnd', senderInfo);
     senderInfo.insertAdjacentElement('beforeEnd', userName);
-    messages__item.insertAdjacentElement('beforeEnd', chatMessage);
+    messages_item.insertAdjacentElement('beforeEnd', chatMessage);
 
     //Set classes & id
     message.classList = "message"
     senderInfo.classList = "senderInfo"
     chatMessage.classList = "chatMessage"
-    messages__item.classList = "messages__item"
+    messages_item.classList = "messages_item"
 
     //Set inner html
     userName.innerHTML = user
     chatMessage.innerHTML = msg
 
     //Insert element to  body
-    chatbox_chatmsgArea.insertAdjacentElement('beforeend', messages__item);
+    chatbox_chatmsgArea.insertAdjacentElement('beforeend', messages_item);
 
     chatbox_chatmsgArea.scrollTop = chatbox_chatmsgArea.scrollHeight
 
     //Check if message is from self
     if (isSelf) {
-        messages__item.classList.add('message_sender')
+        messages_item.classList.add('message_sender')
     } else {
-        messages__item.classList.add('message_reciver')
+        messages_item.classList.add('message_reciver')
     }
+
+    // chatbox_chatmsgArea.insertAdjacentElement('beforeend', chatTyping());
+    
 
 }
 
+function chatTyping(){
+
+    const chatbox_chatmsgArea = document.getElementById('chatbox_chatmsgArea')
+
+    const message_item_typing = document.createElement('div')
+    const message_item_typing_dot1 = document.createElement('span')
+    const message_item_typing_dot2 = document.createElement('span')
+    const message_item_typing_dot3  = document.createElement('span')
+
+    message_item_typing.classList = "message_item_typing"
+    message_item_typing.insertAdjacentElement('beforeEnd', message_item_typing_dot1);
+    message_item_typing.insertAdjacentElement('beforeEnd', message_item_typing_dot2);
+    message_item_typing.insertAdjacentElement('beforeEnd', message_item_typing_dot3);
+
+    chatbox_chatmsgArea.insertAdjacentElement('beforeEnd', message_item_typing );
+}
 
 export function chatWindow() {
 
