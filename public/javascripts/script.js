@@ -57,7 +57,7 @@ let saveBtn = function(username){
     document.getElementById("container").insertAdjacentHTML('beforeend',html);
     document.getElementById("saveBtn").addEventListener("click",function(){
         let msg = {username:username};
-        fetch("http://localhost:3000/paintings/savepainting", {
+        fetch("http://gridpainter.herokuapp.com/paintings/savepainting", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
