@@ -1,12 +1,12 @@
 
 export function chatFrontEnd(username, color, socket) {
-    console.log(socket)
+    
+    chatWindow()
 
     const chatbox_msgInput = document.getElementById('chatbox_msgInput')
     const chatbox_sendButton = document.getElementById('chatbox_sendButton')
     const chatBtn = document.querySelector('.chatbox_button')
     const chatBoxContent = document.querySelector('.chatBoxContent')
-
 
     // Message submit
     chatbox_sendButton.addEventListener('click', function (e) {
@@ -20,7 +20,7 @@ export function chatFrontEnd(username, color, socket) {
         }
     })
 
-    //shot hide chat
+    //show hide chat
     chatBtn.addEventListener('click', () => {
         chatBoxContent.classList.toggle('chatNotActive')
     })
@@ -66,39 +66,14 @@ export function chatFrontEnd(username, color, socket) {
         
     })
 
-
+    // Event listener that checks if anyone is typing in chat input
     document.querySelector("#chatbox_msgInput").addEventListener('keypress', function(e){
         if(e.target.value!= ""){
-            console.log("test")
             socket.emit('chatBubble')
         }
     })
 
-
 }
-
-// Chek if a key is entered 
-
-function onKeyDownNotEnter(){
-  if(typing == false) {
-    typing = true
-    socket.emit(typingMessage);
-    timeout = setTimeout(timeoutFunction, 5000);
-  } else {
-    clearTimeout(timeout);
-    timeout = setTimeout(timeoutFunction, 5000);
-  }
-}
-
-var typing = false;
-var timeout = undefined;
-
-function timeoutFunction(){
-  typing = false;
-  socket.emit(noLongerTypingMessage);
-}
-
-
 
 
 
@@ -161,10 +136,7 @@ function outputMessage(user, msg, isSelf) {
     } else {
         messages_item.classList.add('message_reciver')
     }
-
-    // chatbox_chatmsgArea.insertAdjacentElement('beforeend', chatTyping());
     
-
 }
 
 function chatTyping(){
@@ -219,7 +191,6 @@ export function chatWindow() {
 
     chatBox_contentWrapper.insertAdjacentElement('afterbegin', chatbox_chatmsgArea);
 
-
     //Chat Player Area
     const chatbox_playerSidebar = document.createElement('div')
     const chatbox_playerSidebar_title = document.createElement('h3')
@@ -246,7 +217,6 @@ export function chatWindow() {
     chatbox_sendButton.type = 'submit'
     chatbox_msgInput.required = true
     chatbox_playerSidebar_players.classList = "playerSidebar_players";
-
 
     chatbox_sendButton.innerHTML = "Send"
 

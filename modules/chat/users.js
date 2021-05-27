@@ -1,5 +1,8 @@
+
+//Holds user objects
 const users = [];
 
+//User Join
 function userJoin (id, username, color) {
     
     const user = {id, username, color};
@@ -9,10 +12,12 @@ function userJoin (id, username, color) {
     return user;
 }
 
+//Get current user
 function getCurrentUser (id) {
     return users.find(user => user.id == id)
 }
 
+//Find user
 function userLeave (id){
     const index = users.findIndex(user => user.id == id)
 
@@ -21,6 +26,7 @@ function userLeave (id){
     }
 }
 
+//Get all users
 function getUsers(){
     return users.map(user => user)
 }
