@@ -8,14 +8,21 @@ let boardEL = document.getElementById("board");
 let userColor = "green";
 const socket = io();
 
+
 displayLoginForm(containerEL, socket);//Rebecka
 socket.on("gameFull", msg => {container.innerHTML = msg;})
-socket.on("loggedIn", loggedInUser => {console.log("sent to chat: ", loggedInUser.username, loggedInUser.color);
+socket.on("loggedIn", loggedInUser => {
+console.log("sent to chat: ", loggedInUser.username, loggedInUser.color);
 socket.on("userColor", color => userColor = color);//stores color for individual user
-chatFrontEnd(loggedInUser.username, loggedInUser.color, socket);})//Rebecka. Displays message if full, otherwise passes on userobject
+chatFrontEnd(loggedInUser.username, loggedInUser.color, socket);
+saveBtn(loggedInUser.username);
+makeCards();
+
+})//Rebecka. Displays message if full, otherwise passes on userobject
 
 socket.on("currentBoard", board => {//when we join the app we get sent the current board
     console.log(board);
+    document.getElementById("board").innerHTML = "";
     items = board;
     items.forEach(element => { //we go over all the objects that were sent to us
         boardEL.insertAdjacentHTML("beforeend",element.html)//we create each square 
@@ -45,6 +52,20 @@ let color = function(id, color){ // when we click we get the id and the users co
     console.log(items);
 }
 
+let saveBtn = function(username){
+   let html = `<div><button id = "saveBtn">save</button></div>`;
+    document.getElementById("container").insertAdjacentHTML('beforeend',html);
+    document.getElementById("saveBtn").addEventListener("click",function(){
+        let msg = {username:username};
+        fetch("http://gridpainter.herokuapp.com/paintings/savepainting", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(msg)
+          }).then(()=>{console.log("lol");})
+    })
+}
+
 chatWindow()
 // chatFrontEnd()
-

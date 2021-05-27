@@ -5,7 +5,7 @@ export function displayLoginForm(element, socket) {
 <input type="text" id="nameField" placeholder="MyName" name="username"></input>
 <button type="submit">login</button>`;
     element.insertAdjacentHTML("afterbegin", loginForm);
-    document.getElementById("loginForm").addEventListener("submit", (e) => {e.preventDefault(); sendUsername(socket)});
+    document.getElementById("loginForm").addEventListener("submit", (e) => {e.preventDefault(); sendUsername(socket);document.querySelector("#loginForm").innerHTML = ""});
 }
 
 //sends the name from the login form
