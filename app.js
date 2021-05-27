@@ -69,7 +69,7 @@ io.on("connection", socket => {
 
   
   app.locals.getBoard = function(){
-    setTimeout(function(){console.log("hello world");  }, 3000);
+    //setTimeout(function(){console.log("hello world");  }, 3000);
     io.emit("currentBoard", app.locals.stuff);// this is where we send the board to a user that just connected
   }
 

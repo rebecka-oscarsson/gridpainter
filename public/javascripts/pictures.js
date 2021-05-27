@@ -18,7 +18,7 @@ let makeNewCard = function(){
   <button id="newButton">Click me</button>
   </div>`);   
   document.getElementById("newButton").addEventListener("click",()=>{
-    fetch("http://localhost:3000/paintings/newpainting").then();
+    fetch("http://localhost:3000/paintings/newpainting").then((err)=>{console.log(err);});
       
   });
   
@@ -54,5 +54,7 @@ function loadBoard(id){
       "Content-Type": "application/json",
     },
     body: JSON.stringify(msg)
-    }).then(()=>{console.log("lol");})
+    }).then((err)=>{
+      if(err){console.log(err);}
+      console.log("lol");})
 }

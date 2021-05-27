@@ -33,6 +33,7 @@ router.post("/getonepainting", function(req, res, next){
       if(arr[i].paintingID == id){
         req.app.locals.stuff = arr[i].data;
         console.log(arr[i].data);
+        req.app.locals.getBoard();
       }
     }
 
