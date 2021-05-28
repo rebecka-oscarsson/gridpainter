@@ -1,17 +1,17 @@
-import { chatFrontEnd, chatWindow } from '../modules/frontendchat.mjs'
+import { chatFrontEnd} from '../modules/frontendchat.mjs'
 import { displayLoginForm } from '../modules/login.mjs';//Rebecka
+import { swithBetweenMode, checkForToggle } from '../modules/gameView.mjs';
 
 let size = 25;
 let items = [];
-let containerEL = document.getElementById("container");
-let boardEL = document.getElementById("board");
 let userColor = null;
 const socket = io();
 
 //Displays login form
+
 //let localhost = "http://localhost:3000"
 let localhost ="https://gridpainter.herokuapp.com"
-displayLoginForm(containerEL, socket);//Rebecka
+displayLoginForm(socket);//Rebecka
 
 
 //When game is full
@@ -26,6 +26,14 @@ socket.on("loggedIn", loggedInUser => {
 
     //stores color for individual user
     userColor = loggedInUser.color;
+
+    //Creates container for board
+    createContainer()
+
+    //Switches betwwen draw-free and game mode
+    swithBetweenMode()
+
+    checkForToggle()
 
     //Creates Chat
     chatFrontEnd(loggedInUser.username, loggedInUser.color, socket);
@@ -43,6 +51,7 @@ socket.on("currentBoard", board => {
     if(userColor){
     console.log(board);
     document.getElementById("board").innerHTML = "";
+    let boardEL = document.getElementById("board");
     items = board;
 
     //we go over all the objects that were sent to us
@@ -115,3 +124,13 @@ let saveBtn = function(username){
     })
 }
 
+
+function createContainer(){
+
+    const container = `<div id="container">
+    <div id="board"></div>
+    </div>`
+
+    document.body.insertAdjacentHTML('afterbegin', container)
+    
+}

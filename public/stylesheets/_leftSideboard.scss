@@ -1,0 +1,39 @@
+
+
+
+@mixin sideBoardLeft()  {
+ #saved_paintings_archive{
+   
+    margin: 2rem;
+    position: fixed;
+    left: 0;
+    top: 6.4rem;
+    height: 1rem;
+    
+
+    h2{
+      height: 5rem;
+      padding: 2rem 0;
+      text-align: center;
+      background-color: #2E4531;
+      color: #7EF8B6;
+      margin-bottom: 0.5rem;
+      font-family: 'OCR A Std';
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      font-size: 1.2rem;
+      font-weight: 400;
+    }
+    
+
+    #saved_paintings_archive_wrapper{
+      border: 1px dashed black;
+      padding: 2rem;
+      overflow-y: scroll;
+      height: 31rem;
+
+    }
+
+  }
+
+}

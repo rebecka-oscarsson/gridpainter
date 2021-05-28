@@ -1,0 +1,70 @@
+
+@mixin header()  {
+ 
+    #header_section{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        margin: 2rem;
+
+        h1{
+            font-family: 'OCR A Std';
+            font-size: 2rem;
+        }
+
+       p{
+            font-size: 1rem;
+            margin: 2rem 0 1rem 0;
+            font-family: 'OCR A Std';
+
+       }
+
+        .toggle {
+            display: flex;
+            justify-content: center;
+            --width: 50px;
+            --height: calc(var(--width) / 2);
+            --border-radius: calc(var(--height) / 2);
+    
+            cursor: pointer;
+
+            .toggle__input {
+                display: none;
+            }
+
+            .toggle__fill {
+                position: relative;
+                width: var(--width);
+                height: var(--height);
+                border-radius: var(--border-radius);
+                background: #dddddd;
+                transition: background 0.2s;
+            }
+        }
+        
+    
+        .toggle__input:checked ~ .toggle__fill {
+            background: #009578;
+        }
+        
+        .toggle__fill::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: var(--height);
+            width: var(--height);
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+            border-radius: var(--border-radius);
+            transition: transform 0.2s;
+        }
+        
+        .toggle__input:checked ~ .toggle__fill::after {
+            transform: translateX(var(--height));
+        }
+        
+        }
+    
+}
