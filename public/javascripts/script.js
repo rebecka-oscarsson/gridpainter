@@ -23,7 +23,7 @@ socket.on("loggedIn", loggedInUser => {
     console.log("sent to chat: ", loggedInUser.username, loggedInUser.color);
 
     //stores color for individual user
-    socket.on("userColor", color => userColor = color);
+    userColor = loggedInUser.color;
 
     //Creates Chat
     chatFrontEnd(loggedInUser.username, loggedInUser.color, socket);
@@ -38,6 +38,7 @@ socket.on("loggedIn", loggedInUser => {
 
 //when we join the app we get sent the current board
 socket.on("currentBoard", board => {
+    if(userColor){
     console.log(board);
     document.getElementById("board").innerHTML = "";
     items = board;
@@ -55,11 +56,12 @@ socket.on("currentBoard", board => {
         document.getElementById(element.id).addEventListener("click", function () { 
             color(this.id, userColor);
         })
-    });
+    });}
 })
 
 //when tile changes every one gets a message "newTile"
 socket.on("newTile", (update) => {
+    if(userColor){
     console.log("newtile");
 
     //im not sure if this is requierd
@@ -68,7 +70,7 @@ socket.on("newTile", (update) => {
 
     //we get what tile was changed and update that tile on the front end
     document.getElementById(update.id).style.backgroundColor = update.color;
-})
+}})
 
 
 // when we click we get the id and the users color
