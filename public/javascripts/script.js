@@ -8,7 +8,6 @@ let boardEL = document.getElementById("board");
 let userColor = null;
 const socket = io();
 
-<<<<<<< HEAD
 //Displays login form
 displayLoginForm(containerEL, socket);//Rebecka
 
@@ -35,17 +34,6 @@ socket.on("loggedIn", loggedInUser => {
     //Save button for painting
     saveBtn(loggedInUser.username);
 
-=======
-
-displayLoginForm(containerEL, socket);
-socket.on("gameFull", msg => {container.innerHTML = msg;})
-socket.on("loggedIn", loggedInUser => {
-userColor = loggedInUser.color;//stores color for individual user
-chatWindow()
-chatFrontEnd(loggedInUser.username, loggedInUser.color, socket);//sends user to chat
-saveBtn(loggedInUser.username);
-makeCards();
->>>>>>> 2036e5e31be4432acc17e8dcc05337025b38ec82
 })
 
 //when we join the app we get sent the current board
@@ -73,7 +61,6 @@ socket.on("currentBoard", board => {
 //when tile changes every one gets a message "newTile"
 socket.on("newTile", (update) => {
     console.log("newtile");
-<<<<<<< HEAD
 
     //im not sure if this is requierd
     items[update.id].color = update.color;
@@ -82,13 +69,6 @@ socket.on("newTile", (update) => {
     //we get what tile was changed and update that tile on the front end
     document.getElementById(update.id).style.backgroundColor = update.color;
 })
-=======
-    if(userColor)
-    {items[update.id].color = update.color; //im not sure if this is requierd
-    console.log(update);
-    document.getElementById(update.id).style.backgroundColor = update.color;}//we get what tile was changed and update that tile on the front end
-  })
->>>>>>> 2036e5e31be4432acc17e8dcc05337025b38ec82
 
 
 // when we click we get the id and the users color
@@ -126,8 +106,3 @@ function saveBtn(username) {
     })
 }
 
-<<<<<<< HEAD
-
-=======
-// chatFrontEnd()
->>>>>>> 2036e5e31be4432acc17e8dcc05337025b38ec82
