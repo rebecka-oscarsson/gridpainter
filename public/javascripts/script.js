@@ -28,7 +28,7 @@ socket.on("loggedIn", loggedInUser => {
     userColor = loggedInUser.color;
 
     //Creates container for board
-    // createContainer()
+    createContainer()
 
     //Switches betwwen draw-free and game mode
     swithBetweenMode()
