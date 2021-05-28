@@ -11,8 +11,7 @@ const socket = io();
 
 //let localhost = "http://localhost:3000"
 let localhost ="https://gridpainter.herokuapp.com"
-displayLoginForm(containerEL, socket);//Rebecka
-
+displayLoginForm(socket);//Rebecka
 
 
 //When game is full
@@ -29,7 +28,7 @@ socket.on("loggedIn", loggedInUser => {
     userColor = loggedInUser.color;
 
     //Creates container for board
-    createContainer()
+    // createContainer()
 
     //Switches betwwen draw-free and game mode
     swithBetweenMode()
