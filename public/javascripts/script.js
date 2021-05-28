@@ -9,6 +9,8 @@ let userColor = null;
 const socket = io();
 
 //Displays login form
+let localhost = "http://localhost:3000"
+
 displayLoginForm(containerEL, socket);//Rebecka
 
 
@@ -71,6 +73,10 @@ socket.on("newTile", (update) => {
     //we get what tile was changed and update that tile on the front end
     document.getElementById(update.id).style.backgroundColor = update.color;
 }})
+socket.on("updateSave",(item)=>{
+    makeCard(item,item.userCreated);
+})
+
 
 
 // when we click we get the id and the users color
@@ -92,21 +98,20 @@ let color = function (id, color) {
     // console.log(items);
 }
 
-//Save btn for painting
-function saveBtn(username) {
-
-    let html = `<div><button id = "saveBtn">save</button></div>`;
-    document.getElementById("container").insertAdjacentHTML('beforeend', html);
-
-    document.getElementById("saveBtn").addEventListener("click", function () {
-        let msg = { username: username };
-        fetch("http://gridpainter.herokuapp.com/paintings/savepainting", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(msg)
-        }).then(() => { console.log("lol"); })
+let saveBtn = function(username){
+   let html = `<div><button id = "saveBtn">save</button></div>`;
+    document.getElementById("container").insertAdjacentHTML('beforeend',html);
+    document.getElementById("saveBtn").addEventListener("click",function(){
+        let msg = {username:username};
+        fetch(localhost + "/paintings/savepainting", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(msg)
+          }).catch(function(err) {
+            console.log(err,"error");
+        });
     })
 }
 

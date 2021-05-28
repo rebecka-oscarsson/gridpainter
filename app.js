@@ -80,6 +80,9 @@ io.on("connection", socket => {
     disconnectedUser.username = null;//removes username and id so the color is now free for grabbing
     disconnectedUser.socketID = null;}
 })
+  app.locals.updateSave = function(item){
+    io.emit("updateSave",item);
+  }
 });
 
 // Creates 2nd socket connect for chat
