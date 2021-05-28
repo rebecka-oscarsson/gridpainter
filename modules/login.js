@@ -16,11 +16,7 @@ function login(users, username, socket, io) {
 
       //used for passing on all logged in users to the chat
       socket.emit("loggedIn", loggedInUser);
-
-      //used for storing usercolor in frontend
-      socket.emit("userColor", users[user].color);
-
-      //?
+      
       return
     }
   }
