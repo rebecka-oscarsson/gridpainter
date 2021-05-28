@@ -30,7 +30,7 @@ socket.on("loggedIn", loggedInUser => {
     //Creates container for board
     createContainer()
 
-    //Switches betwwen draw-free and game mode
+    //Switches between draw-free and game mode
     swithBetweenMode()
 
     checkForToggle()
@@ -131,6 +131,6 @@ function createContainer(){
     <div id="board"></div>
     </div>`
 
-    document.body.insertAdjacentHTML('afterbegin', container)
+    document.body.insertAdjacentHTML('beforeEnd', container)
     
 }

@@ -26,6 +26,8 @@ let makeCards = function(){
       saved_paintings_archive.insertAdjacentElement('beforeend', saved_paintings_archive_wrapper);
       element.insertAdjacentElement('afterend', saved_paintings_archive);
 
+
+      //Get squares(cards)
       for (let i = 0; i < data.length; i++) {
 
         makeCard(data[i], data[i].userCreated)
@@ -34,6 +36,8 @@ let makeCards = function(){
     }).catch(function(err) {
       console.log(err,"error");
   });
+
+    //Clears current board
     makeNewCard();
 } 
 
