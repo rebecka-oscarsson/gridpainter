@@ -68,7 +68,9 @@ let saveBtn = function(username){
             "Content-Type": "application/json",
           },
           body: JSON.stringify(msg)
-          }).then(()=>{console.log("lol");})
+          }).then(()=>{console.log("lol");}).catch(function(err) {
+            console.log(err,"error");
+        });
     })
 }
 

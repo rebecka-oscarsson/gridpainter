@@ -14,6 +14,7 @@ router.post('/savepainting', function(req, res, next) {
   }
   req.app.locals.db.collection("paintings").insertOne(object).then(()=>{
     console.log("added");
+    req.app.locals.allPaintings.push(object);
     req.app.locals.updateSave(object);
   });
 });
@@ -30,6 +31,7 @@ router.get("/getallpainting", function(req, res, next){
 });
 
 router.post("/getonepainting", function(req, res, next){
+    req.setTimeout(0) // no timeout
     id = req.body.idValue;
     let arr = req.app.locals.allPaintings
     console.log( req.app.locals.allPaintings, "getonepainting 123123");

@@ -10,7 +10,9 @@ let makeCards = function(){
         makeCard(data[i], data[i].userCreated)       
       }
       
-    });
+    }).catch(function(err) {
+      console.log(err,"error");
+  });
     makeNewCard();
 } 
 let makeNewCard = function(){
@@ -20,7 +22,9 @@ let makeNewCard = function(){
   <button id="newButton">Click me</button>
   </div>`);   
   document.getElementById("newButton").addEventListener("click",()=>{
-    fetch(local+"/paintings/newpainting").then((err)=>{console.log(err);});
+    fetch(local+"/paintings/newpainting").then().catch(function(err) {
+      console.log(err,"error");
+  });;
       
   });
   
@@ -58,5 +62,7 @@ function loadBoard(id){
     body: JSON.stringify(msg)
     }).then((err)=>{
       if(err){console.log(err);}
-      console.log("lol");})
+      console.log("lol");}).catch(function(err) {
+        console.log(err,"error");
+    });
 }
