@@ -13,6 +13,7 @@ displayLoginForm(containerEL, socket);
 socket.on("gameFull", msg => {container.innerHTML = msg;})
 socket.on("loggedIn", loggedInUser => {
 userColor = loggedInUser.color;//stores color for individual user
+chatWindow()
 chatFrontEnd(loggedInUser.username, loggedInUser.color, socket);//sends user to chat
 saveBtn(loggedInUser.username);
 makeCards();
@@ -66,5 +67,4 @@ let saveBtn = function(username){
     })
 }
 
-chatWindow()
 // chatFrontEnd()
