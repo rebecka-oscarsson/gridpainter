@@ -8,7 +8,9 @@ let userColor = null;
 const socket = io();
 
 //Displays login form
-displayLoginForm(socket);
+//let localhost = "http://localhost:3000"
+let localhost ="https://gridpainter.herokuapp.com"
+displayLoginForm(socket);//Rebecka
 
 
 //When game is full
@@ -22,7 +24,7 @@ socket.on("loggedIn", loggedInUser => {
     console.log("sent to chat: ", loggedInUser.username, loggedInUser.color);
 
     //stores color for individual user
-    socket.on("userColor", color => userColor = color);
+    userColor = loggedInUser.color;
 
     //Creates container for board
     createContainer()
@@ -45,6 +47,7 @@ socket.on("loggedIn", loggedInUser => {
 
 //when we join the app we get sent the current board
 socket.on("currentBoard", board => {
+    if(userColor){
     console.log(board);
     document.getElementById("board").innerHTML = "";
     let boardEL = document.getElementById("board");
@@ -63,20 +66,25 @@ socket.on("currentBoard", board => {
         document.getElementById(element.id).addEventListener("click", function () { 
             color(this.id, userColor);
         })
-    });
+    });}
 })
 
 //when tile changes every one gets a message "newTile"
 socket.on("newTile", (update) => {
+    if(userColor){
     console.log("newtile");
 
     //im not sure if this is requierd
     items[update.id].color = update.color;
-    console.log(update);
+    // console.log(update);
 
     //we get what tile was changed and update that tile on the front end
     document.getElementById(update.id).style.backgroundColor = update.color;
+}})
+socket.on("updateSave",(item)=>{
+    makeCard(item,item.userCreated);
 })
+
 
 
 // when we click we get the id and the users color
@@ -84,7 +92,7 @@ let color = function (id, color) {
 
     // we get the tile on the frontend
     let el = document.getElementById(id);
-    console.log(el.style.backgroundColor);
+    // console.log(el.style.backgroundColor);
 
     //if the current tile color dose not eaqual the user color we cange it to the usercolor
     if (el.style.backgroundColor != color) {
@@ -95,22 +103,23 @@ let color = function (id, color) {
     else {// elese we change it to white
         socket.emit("updateTile", { id: id, color: "white" });
     }
-    console.log(items);
+    // console.log(items);
 }
 
-//Save btn for painting
-function saveBtn(username) {
-    let html = `<div><button id = "saveBtn">save</button></div>`;
-    document.getElementById("container").insertAdjacentHTML('beforeend', html);
-    document.getElementById("saveBtn").addEventListener("click", function () {
-        let msg = { username: username };
-        fetch("http://gridpainter.herokuapp.com/paintings/savepainting", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(msg)
-        }).then(() => { console.log("lol"); })
+let saveBtn = function(username){
+   let html = `<div><button id = "saveBtn">save</button></div>`;
+    document.getElementById("container").insertAdjacentHTML('beforeend',html);
+    document.getElementById("saveBtn").addEventListener("click",function(){
+        let msg = {username:username};
+        fetch(localhost + "/paintings/savepainting", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(msg)
+          }).catch(function(err) {
+            console.log(err,"error");
+        });
     })
 }
 

@@ -3,7 +3,8 @@ var router = express.Router();
 let rand = require("random-key-generator");
 const board = require("../modules/board");
 let pictures = [];
-
+//let local = "http://localhost:3000";
+let local = "https://gridpainter.herokuapp.com"
 
 router.post('/savepainting', function (req, res, next) {
   let object = {
@@ -11,7 +12,11 @@ router.post('/savepainting', function (req, res, next) {
     userCreated: req.body.username,
     data: req.app.locals.stuff//req.body.board
   }
-  req.app.locals.db.collection("paintings").insertOne(object).then(console.log("added"));
+  req.app.locals.db.collection("paintings").insertOne(object).then(()=>{
+    console.log("added");
+    req.app.locals.allPaintings.push(object);
+    req.app.locals.updateSave(object);
+  });
 });
 
 
@@ -25,18 +30,18 @@ router.get("/getallpainting", function (req, res, next) {
     })
 });
 
-router.post("/getonepainting", function (req, res, next) {
-  id = req.body.idValue;
-  let arr = req.app.locals.allPaintings
-  console.log(req.app.locals.allPaintings, "getonepainting 123123");
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i].paintingID == id) {
-      req.app.locals.stuff = arr[i].data;
-      console.log(arr[i].data);
-      req.app.locals.getBoard();
+router.post("/getonepainting", function(req, res, next){
+    req.setTimeout(1) // no timeout
+    id = req.body.idValue;
+    let arr = req.app.locals.allPaintings
+    console.log( req.app.locals.allPaintings, "getonepainting 123123");
+    for (let i = 0; i < arr.length; i++) {
+      if(arr[i].paintingID == id){
+        req.app.locals.stuff = arr[i].data;
+        console.log(arr[i].data);
+        req.app.locals.getBoard();
+      }
     }
-  }
-
 });
 
 router.get("/newpainting", function (req, res, next) {
