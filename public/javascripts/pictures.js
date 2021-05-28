@@ -1,4 +1,5 @@
-let local = "http://localhost:3000";
+//let local = "http://localhost:3000";
+let local = "https://gridpainter.herokuapp.com"
 
 
 let makeCards = function(){

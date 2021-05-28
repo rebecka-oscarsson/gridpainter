@@ -3,8 +3,8 @@ var router = express.Router();
 let rand = require("random-key-generator");
 const board = require("../modules/board");
 let pictures = [];
-let local = "http://localhost:3000/";
-
+//let local = "http://localhost:3000";
+let local = "https://gridpainter.herokuapp.com"
 
 router.post('/savepainting', function (req, res, next) {
   let object = {
