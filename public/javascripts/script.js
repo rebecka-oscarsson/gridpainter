@@ -9,8 +9,8 @@ let userColor = null;
 const socket = io();
 
 //Displays login form
-let localhost = "http://localhost:3000"
-
+//let localhost = "http://localhost:3000"
+let localhost ="https://gridpainter.herokuapp.com"
 displayLoginForm(containerEL, socket);//Rebecka
 
 
