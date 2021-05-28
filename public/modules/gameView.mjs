@@ -14,21 +14,11 @@ function gameModeView(){
 
     //Changing title
     document.getElementById("game_mode_title").innerText = "GAME MODE";
+
+    const color = "linear-gradient(268.91deg, #f5927c -2.14%, #45382e 99.69%)";
     
     //Changing backgroudn color
-    document.body.style.backgroundColor = "red";
-
-    //Crete element for facit drawing
-    // const drawing_answer  = document.createElement('div')
-
-    // //Set id
-    // drawing_answer.id = "drawing_answer"
-
-    // header_section.insertAdjacentElement("afterend", drawing_answer)
- 
-
-   
-
+    document.body.style.background = color;
     
 }
 
@@ -47,26 +37,17 @@ export function checkForToggle(){
     const toggle = document.getElementById("myToggle")
 
     toggle.addEventListener('click', () => {
-        
-        console.log(toggle.checked )
-
-        console.log("gee")
     
         if(toggle.checked){
-
-            console.log("gee11")
 
             //Activate game view
             gameModeView()
         } else {
 
+            const color = "linear-gradient(93.12deg, #7EF8B6 0.52%, #2E4531 100%)";
             //Change title name
             document.getElementById("game_mode_title").innerText = "Draw Mode"
-            // document.getElementById('drawing_answer').remove()
-            document.body.style.backgroundColor = "";
-            
-
-            // Draw mode
+            document.body.style.background = color;
         }
 
     })

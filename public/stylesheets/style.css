@@ -6,6 +6,15 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primaryBackground: (93.12deg, #7EF8B6 0.52%, #2E4531 100%);
+  --secondaryGradient: (268.91deg, #f5927c -2.14%, #45382e 99.69%);
+}
+
+body {
+  background: linear-gradient(93.12deg, #7EF8B6 0.52%, #2E4531 100%);
+}
+
 #login_section {
   display: flex;
   flex-flow: column wrap;
