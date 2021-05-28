@@ -1,16 +1,14 @@
-import { chatFrontEnd, chatWindow } from '../modules/frontendchat.mjs'
+import { chatFrontEnd} from '../modules/frontendchat.mjs'
 import { displayLoginForm } from '../modules/login.mjs';//Rebecka
-import { swithBetweenMode } from '../modules/gameView.mjs';
+import { swithBetweenMode, checkForToggle } from '../modules/gameView.mjs';
 
 let size = 25;
 let items = [];
-let containerEL = document.getElementById("container");
-let boardEL = document.getElementById("board");
 let userColor = null;
 const socket = io();
 
 //Displays login form
-displayLoginForm(containerEL, socket);//Rebecka
+displayLoginForm(socket);
 
 
 //When game is full
@@ -26,8 +24,13 @@ socket.on("loggedIn", loggedInUser => {
     //stores color for individual user
     socket.on("userColor", color => userColor = color);
 
+    //Creates container for board
+    createContainer()
+
     //Switches betwwen draw-free and game mode
     swithBetweenMode()
+
+    checkForToggle()
 
     //Creates Chat
     chatFrontEnd(loggedInUser.username, loggedInUser.color, socket);
@@ -44,6 +47,7 @@ socket.on("loggedIn", loggedInUser => {
 socket.on("currentBoard", board => {
     console.log(board);
     document.getElementById("board").innerHTML = "";
+    let boardEL = document.getElementById("board");
     items = board;
 
     //we go over all the objects that were sent to us
@@ -110,3 +114,13 @@ function saveBtn(username) {
     })
 }
 
+
+function createContainer(){
+
+    const container = `<div id="container">
+    <div id="board"></div>
+    </div>`
+
+    document.body.insertAdjacentHTML('afterbegin', container)
+    
+}

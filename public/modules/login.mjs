@@ -1,8 +1,9 @@
 
 
 // Displays login form
-export function displayLoginForm(element, socket) {
-
+export function displayLoginForm(socket) {
+    
+    // let element = document.getElementById("container");
     
     //Create login
     const login_section = loginElements()
@@ -11,7 +12,7 @@ export function displayLoginForm(element, socket) {
     const header_section = createHeader()
 
     //Append login to document
-    element.insertAdjacentElement("beforeEnd", login_section);
+    document.body.insertAdjacentElement("beforeEnd", login_section);
 
 
         //Event listener for login btn
@@ -21,7 +22,7 @@ export function displayLoginForm(element, socket) {
         sendUsername(socket); document.querySelector("#loginForm").innerHTML = ""
 
         //Append Header to document
-        element.insertAdjacentElement("beforeBegin", header_section);
+        document.body.insertAdjacentElement("beforeBegin", header_section);
 
         document.getElementById("login_section").remove()
 

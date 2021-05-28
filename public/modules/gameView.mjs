@@ -1,6 +1,39 @@
 
 
 
+
+
+
+
+
+
+
+function gameModeView(){
+
+
+    
+}
+
+
+
+
+
+
+
+export function checkForToggle(){
+
+    const toggle = document.getElementById("myToggle")
+
+    toggle.addEventListener('click', () => {
+        console.log(toggle.checked )
+    })
+
+
+}
+
+
+
+
 export function swithBetweenMode(){
 
     const login_title = document.getElementById('login_title')
