@@ -1,0 +1,14 @@
+
+@mixin answer()  {
+
+#drawing_answer{
+
+    position: fixed;
+    right: 3rem;
+    top: 5rem;
+    background-color: white;
+    height: 15rem;
+    width: 15rem;
+}
+
+}

@@ -3,7 +3,8 @@
 '_chat.scss', 
 '_leftSideboard.scss', 
 '_freePainting.scss',
-'_header.scss';
+'_header.scss',
+'answers.scss';
 
 * {
   margin: 0;
@@ -19,6 +20,9 @@
 
 //Header
 @include header();
+
+//Drawing answers
+@include answer();
 
 //Free Painting Mode
 @include freePaintingMode();

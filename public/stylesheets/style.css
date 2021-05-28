@@ -137,6 +137,15 @@
   transform: translateX(var(--height));
 }
 
+#drawing_answer {
+  position: fixed;
+  right: 3rem;
+  top: 5rem;
+  background-color: white;
+  height: 15rem;
+  width: 15rem;
+}
+
 #container {
   display: flex;
   flex-direction: column;
@@ -206,6 +215,8 @@
   padding: 2rem;
   overflow-y: scroll;
   height: 31rem;
+  background-color: white;
+  opacity: 0.7;
 }
 
 :root {

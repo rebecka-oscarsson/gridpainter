@@ -22,7 +22,7 @@ export function displayLoginForm(socket) {
         sendUsername(socket); document.querySelector("#loginForm").innerHTML = ""
 
         //Append Header to document
-        document.body.insertAdjacentElement("beforeBegin", header_section);
+        document.body.insertAdjacentElement("afterBegin", header_section);
 
         document.getElementById("login_section").remove()
 
