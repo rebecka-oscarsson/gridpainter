@@ -2,7 +2,7 @@
 
 
 
- function makeCards() {
+let makeCards = function() {
 
   fetch('http://gridpainter.herokuapp.com/paintings/getallpainting')
     .then(response => response.json())
@@ -36,7 +36,7 @@
   makeNewCard();
 }
 
-function makeNewCard() {
+let makeNewCard = function(){
   let element = document.getElementById("container");
   element.insertAdjacentHTML("beforeend",
 
@@ -55,7 +55,7 @@ function makeNewCard() {
 
 }
 
- function makeCard (item, name) {
+let makeCard = function(item,name){
 
   let element = document.getElementById("saved_paintings_archive_wrapper");
   let id = item.paintingID;
