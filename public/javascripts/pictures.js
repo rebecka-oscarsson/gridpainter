@@ -47,7 +47,7 @@ let makeNewCard = function(){
   element.insertAdjacentHTML("beforeend",
   `<div class="card">
   <h1>New Board</h1>
-  <button id="newButton">Click me</button>
+  <button id="newButton">Clear board</button>
   </div>`);   
   document.getElementById("newButton").addEventListener("click",()=>{
     fetch(local+"/paintings/newpainting").then().catch(function(err) {

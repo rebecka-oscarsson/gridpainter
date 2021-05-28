@@ -108,7 +108,7 @@ let color = function (id, color) {
 }
 
 let saveBtn = function(username){
-   let html = `<div><button id = "saveBtn">save</button></div>`;
+   let html = `<div><button id = "saveBtn">Save</button></div>`;
     document.getElementById("board").insertAdjacentHTML('afterend',html);
     document.getElementById("saveBtn").addEventListener("click",function(){
         let msg = {username:username};
