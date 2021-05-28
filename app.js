@@ -12,6 +12,9 @@ const board = require("./modules/board");
 const login = require("./modules/login");//Rebecka
 const { userJoin, userLeave, getCurrentUser, getUsers } = require('./modules/chat/users.js');
 const { setTimeout } = require("timers");
+const comparePaintings = require("./modules/comparePaintings");//Compares original/facit-array with user painting
+
+// comparePaintings(original, copy) //run function like this, it returns a percentage value
 
 
 const app = express();
