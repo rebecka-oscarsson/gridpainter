@@ -31,7 +31,7 @@ router.get("/getallpainting", function(req, res, next){
 });
 
 router.post("/getonepainting", function(req, res, next){
-    req.setTimeout(0) // no timeout
+    req.setTimeout(1) // no timeout
     id = req.body.idValue;
     let arr = req.app.locals.allPaintings
     console.log( req.app.locals.allPaintings, "getonepainting 123123");
