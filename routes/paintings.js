@@ -42,13 +42,6 @@ router.post("/getonepainting", function(req, res, next){
         req.app.locals.getBoard();
       }
     }
-
-  /*req.app.locals.db.collection("paintings").find({paintingID:req.body.idValue}).toArray().then(function(obj){
-    //console.log(obj,"samalamastama");
-    req.app.locals.stuff = obj[0].data;
-   // console.log(req.app.locals.stuff,"board");
-    req.app.locals.getBoard();
-  })*/
 });
 
 router.get("/newpainting", function(req, res, next){
