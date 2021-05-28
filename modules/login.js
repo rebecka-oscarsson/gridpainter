@@ -1,7 +1,7 @@
 
 //Function for signing in users
 
-function login(users, username, socket, io) {
+function login(users, username, socket) {
   for (user in users) {
 
     //if the object (that has a color) has no username
@@ -9,14 +9,11 @@ function login(users, username, socket, io) {
 
       //grab the spot
       users[user].username = username;
-      users[user].socketID = socket.id
-
-      console.log("colors assigned: ", users);
+      users[user].socketID = socket.id;
       let loggedInUser = users[user];
 
-      //used for passing on all logged in users to the chat
+      //passes on the object loggedInUser to the chat and game
       socket.emit("loggedIn", loggedInUser);
-      
       return
     }
   }
