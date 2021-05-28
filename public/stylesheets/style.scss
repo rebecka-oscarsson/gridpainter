@@ -1,4 +1,6 @@
-@import '_typing.scss';
+@import '_typing.scss', '_login.scss';
+
+@include login();
 
 * {
   margin: 0;
@@ -15,6 +17,54 @@
   align-content: center;
   justify-content: center;
   font-family: "Roboto", sans-serif;
+
+  h1{
+    font-family: 'OCR A Std';
+    font-size: 2rem;
+    margin: 3rem;
+
+  }
+
+  #saveBtn{
+    height: 2rem;
+    width: 15rem;
+    margin-top: 1rem;
+    font-family: 'Avenir LT Std';
+    font-size: 1rem;
+    text-align: center;
+    background-color: #2E4531;
+    color: white;
+  }
+
+  #saved_paintings_archive{
+   
+    margin: 2rem;
+    position: fixed;
+    left: 0;
+    top: 6.4rem;
+
+    h2{
+      height: 5rem;
+      padding: 2rem 0;
+      text-align: center;
+      background-color: #2E4531;
+      color: #7EF8B6;
+      margin-bottom: 0.5rem;
+      font-family: 'OCR A Std';
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      font-size: 1.2rem;
+      font-weight: 400;
+    }
+    
+
+    #saved_paintings_archive_wrapper{
+      border: 1px dashed black;
+      padding: 2rem;
+
+    }
+
+  }
 }
 
 .box {

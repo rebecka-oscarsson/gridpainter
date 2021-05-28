@@ -1,3 +1,6 @@
+
+// Create new drawing board
+
 function createNewBoard(arr, size){
     for (let index = 0; index < size; index++) {
         let obj = {
@@ -8,6 +11,5 @@ function createNewBoard(arr, size){
         arr.push(obj);
       }
 }
-
 
 module.exports = createNewBoard

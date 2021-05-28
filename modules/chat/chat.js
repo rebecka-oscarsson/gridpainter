@@ -1,46 +1,36 @@
 const { userJoin, userLeave, getCurrentUser, getUsers } = require('./users.js')
 const socket = require("socket.io");
 
-const http = require("http");
-const express = require("express");
-const socketio = require("socket.io");
-
-const app = express();
-const server = http.createServer(app);
-const io = socketio(server);
 
 const room = "gridpainter"
 const serverName = 'Grid Painter';
 
 
+// Socket cononection for chat
 function chat(io) {
     io.on('connection', function (socket) {
 
-        // när användare joinar, skickar in ett userobject till array i users.js
+        // User Joins
         socket.on('join', ({ username, color }) => {
             const user = userJoin(socket.id, username, color)
 
-    
-            socket.join(room)
-
-            // Welcome current user
-            // socket.emit('message', `${user.username} 'Welcome to Gridpainter!`, serverName );
+            socket.join(room);
 
             // Broadcast when a user connects
             socket.broadcast
                 .to(room)
-                .emit('message', serverName, `${user.username} has joined the chat` )
+                .emit('message', serverName, `${user.username} has joined the chat`)
 
 
-             // Send users
+            // Send users
             io.to(room).emit('users', {
                 users: getUsers()
             });
 
-                
+
         })
 
-        // skicka meddelande, chattmeddelanden 
+        // Chat message
         socket.on('chatMessage', (msg) => {
 
             const user = getCurrentUser(socket.id)
@@ -49,12 +39,9 @@ function chat(io) {
 
         })
 
+        //Chatbubble
         socket.on('chatBubble', () => {
-
-            console.log("chatBubble")
-
             socket.broadcast.to(room).emit('chatBubbleStatus', true)
-
         })
 
 
@@ -64,7 +51,7 @@ function chat(io) {
 
             if (user) {
                 io.to(room).emit(
-                    'message',  serverName, `${user.username} has left the chat` );
+                    'message', serverName, `${user.username} has left the chat`);
 
                 // Send users and room info
                 io.to(room).emit('roomUsers', {
