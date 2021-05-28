@@ -1,5 +1,6 @@
 import { chatFrontEnd, chatWindow } from '../modules/frontendchat.mjs'
 import { displayLoginForm } from '../modules/login.mjs';//Rebecka
+import { swithBetweenMode } from '../modules/gameView.mjs';
 
 let size = 25;
 let items = [];
@@ -24,6 +25,9 @@ socket.on("loggedIn", loggedInUser => {
 
     //stores color for individual user
     socket.on("userColor", color => userColor = color);
+
+    //Switches betwwen draw-free and game mode
+    swithBetweenMode()
 
     //Creates Chat
     chatFrontEnd(loggedInUser.username, loggedInUser.color, socket);

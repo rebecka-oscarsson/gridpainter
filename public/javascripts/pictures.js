@@ -8,6 +8,8 @@ let makeCards = function() {
     .then(response => response.json())
     .then(function (data) {
 
+
+      //Create Archive element for saved paintings
       const element = document.getElementById("container");
       
       const saved_paintings_archive = document.createElement('div')
@@ -19,11 +21,10 @@ let makeCards = function() {
       saved_paintings_archive_wrapper.id = "saved_paintings_archive_wrapper"
       archive_title.innerHTML = "Archive"
 
-      
       saved_paintings_archive_title_wrapper.insertAdjacentElement('beforeend', archive_title);
       saved_paintings_archive.insertAdjacentElement('beforeend', saved_paintings_archive_title_wrapper);
       saved_paintings_archive.insertAdjacentElement('beforeend', saved_paintings_archive_wrapper);
-      element.insertAdjacentElement('afterbegin', saved_paintings_archive);
+      element.insertAdjacentElement('afterend', saved_paintings_archive);
 
 
       for (let i = 0; i < data.length; i++) {
