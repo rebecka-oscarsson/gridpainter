@@ -33,10 +33,11 @@ let makeCards = function(){
   });
     makeNewCard();
 } 
+
+
 let makeNewCard = function(){
   let element = document.getElementById("container");
   element.insertAdjacentHTML("beforeend",
-
   `<div class="card">
   <h1>New Board</h1>
   <button id="newButton">Click me</button>
