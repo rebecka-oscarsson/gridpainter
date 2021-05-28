@@ -109,7 +109,7 @@ let color = function (id, color) {
 
 let saveBtn = function(username){
    let html = `<div><button id = "saveBtn">save</button></div>`;
-    document.getElementById("container").insertAdjacentHTML('beforeend',html);
+    document.getElementById("board").insertAdjacentHTML('afterend',html);
     document.getElementById("saveBtn").addEventListener("click",function(){
         let msg = {username:username};
         fetch(localhost + "/paintings/savepainting", {
