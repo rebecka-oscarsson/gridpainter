@@ -9,7 +9,7 @@ const cors = require('cors');
 
 let paintingRoute = require("./routes/paintings");
 const board = require("./modules/board");
-const login = require("./modules/login");//Rebecka
+const login = require("./modules/login");
 const { userJoin, userLeave, getCurrentUser, getUsers } = require('./modules/chat/users.js');
 const { setTimeout } = require("timers");
 
@@ -57,9 +57,9 @@ io.on("connection", socket => {
 
   if(items.length == 0){board(items, size)} //if the board is empty we can create a new one else we dont do it so we dont overwrite the board
   console.log("connected");
-  socket.on("newUser", (username) => {login(users, username, socket, io)
+  socket.on("newUser", (username) => {login(users, username, socket)//login adds username and socket id to an object in the users-array, then emits the object
     socket.emit("currentBoard", app.locals.stuff);// this is where we send the board to a user that just connected
-  });//(Rebecka) The login function adds username and socket id to an object in users-array
+  });
   
   socket.on("updateTile", (update) =>{ // when a user sends that they changed a tile
     items[update.id].color = update.color; // we update our tiles on the servers list 
@@ -76,8 +76,7 @@ io.on("connection", socket => {
   socket.on("disconnect", () => {
     let disconnectedUser = users.find(userObject => userObject.socketID === socket.id);
     if(disconnectedUser)
-    {console.log(disconnectedUser.username, "with color", disconnectedUser.color, "disconnected");
-    disconnectedUser.username = null;//removes username and id so the color is now free for grabbing
+    {disconnectedUser.username = null;//removes username and id so the color is now free for grabbing
     disconnectedUser.socketID = null;}
 })
   app.locals.updateSave = function(item){
