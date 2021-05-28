@@ -18,13 +18,11 @@ let makeCards = function() {
       saved_paintings_archive.id = "saved_paintings_archive"
       saved_paintings_archive_wrapper.id = "saved_paintings_archive_wrapper"
       archive_title.innerHTML = "Archive"
-
       
       saved_paintings_archive_title_wrapper.insertAdjacentElement('beforeend', archive_title);
       saved_paintings_archive.insertAdjacentElement('beforeend', saved_paintings_archive_title_wrapper);
       saved_paintings_archive.insertAdjacentElement('beforeend', saved_paintings_archive_wrapper);
       element.insertAdjacentElement('afterbegin', saved_paintings_archive);
-
 
       for (let i = 0; i < data.length; i++) {
 

@@ -64,7 +64,7 @@ socket.on("newTile", (update) => {
 
     //im not sure if this is requierd
     items[update.id].color = update.color;
-    console.log(update);
+    // console.log(update);
 
     //we get what tile was changed and update that tile on the front end
     document.getElementById(update.id).style.backgroundColor = update.color;
@@ -76,7 +76,7 @@ let color = function (id, color) {
 
     // we get the tile on the frontend
     let el = document.getElementById(id);
-    console.log(el.style.backgroundColor);
+    // console.log(el.style.backgroundColor);
 
     //if the current tile color dose not eaqual the user color we cange it to the usercolor
     if (el.style.backgroundColor != color) {
@@ -87,13 +87,15 @@ let color = function (id, color) {
     else {// elese we change it to white
         socket.emit("updateTile", { id: id, color: "white" });
     }
-    console.log(items);
+    // console.log(items);
 }
 
 //Save btn for painting
 function saveBtn(username) {
+
     let html = `<div><button id = "saveBtn">save</button></div>`;
     document.getElementById("container").insertAdjacentHTML('beforeend', html);
+
     document.getElementById("saveBtn").addEventListener("click", function () {
         let msg = { username: username };
         fetch("http://gridpainter.herokuapp.com/paintings/savepainting", {
