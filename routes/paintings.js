@@ -13,6 +13,7 @@ router.post('/savepainting', function (req, res, next) {
     data: req.app.locals.stuff//req.body.board
   }
   req.app.locals.db.collection("paintings").insertOne(object).then(()=>{
+    console.log("added");
     req.app.locals.allPaintings.push(object);
     req.app.locals.updateSave(object);
   });
@@ -23,6 +24,7 @@ router.post('/savepainting', function (req, res, next) {
 router.get("/getallpainting", function (req, res, next) {
   req.app.locals.db.collection("paintings").find().toArray()
     .then(resaults => {
+      console.log(resaults);
       req.app.locals.allPaintings = resaults;
       res.send(resaults);
     })
@@ -32,9 +34,11 @@ router.post("/getonepainting", function(req, res, next){
     req.setTimeout(1) // no timeout
     id = req.body.idValue;
     let arr = req.app.locals.allPaintings
+    console.log( req.app.locals.allPaintings, "getonepainting 123123");
     for (let i = 0; i < arr.length; i++) {
       if(arr[i].paintingID == id){
         req.app.locals.stuff = arr[i].data;
+        console.log(arr[i].data);
         req.app.locals.getBoard();
       }
     }
