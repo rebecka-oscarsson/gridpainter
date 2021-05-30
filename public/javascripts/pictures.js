@@ -34,7 +34,6 @@ let makeCards = function(){
       }
       
     }).catch(function(err) {
-      console.log(err,"error");
   });
 
     //Clears current board
@@ -51,7 +50,6 @@ let makeNewCard = function(){
   </div>`);   
   document.getElementById("newButton").addEventListener("click",()=>{
     fetch(local+"/paintings/newpainting").then().catch(function(err) {
-      console.log(err,"error");
   });;
       
   });
@@ -85,7 +83,7 @@ let makeCard = function(item,name){
 }*/
 
 function loadBoard(id){
-  console.log(id, "loadboard");
+  
   let msg = {idValue:id};
   fetch(local+"/paintings/getonepainting", {
     method: "POST",
