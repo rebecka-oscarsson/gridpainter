@@ -33,6 +33,8 @@ export function displayLoginForm(socket) {
 function sendUsername(socket) {
 
     let username = document.getElementById("nameField").value;
+
+    console.log("name sent to backend: ", username)
     socket.emit("newUser", username);
 }
 

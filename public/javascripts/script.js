@@ -22,6 +22,8 @@ socket.on("gameFull", msg => {
 //When logged in
 socket.on("loggedIn", loggedInUser => {
 
+    console.log("sent to chat: ", loggedInUser.username, loggedInUser.color);
+
     //stores color for individual user
     userColor = loggedInUser.color;
 
@@ -47,6 +49,7 @@ socket.on("loggedIn", loggedInUser => {
 //when we join the app we get sent the current board
 socket.on("currentBoard", board => {
     if(userColor){
+    console.log(board);
     document.getElementById("board").innerHTML = "";
     let boardEL = document.getElementById("board");
     items = board;
@@ -69,13 +72,16 @@ socket.on("currentBoard", board => {
 
 //when tile changes every one gets a message "newTile"
 socket.on("newTile", (update) => {
-    
+    if(userColor){
+    console.log("newtile");
+
     //im not sure if this is requierd
     items[update.id].color = update.color;
+    // console.log(update);
 
     //we get what tile was changed and update that tile on the front end
     document.getElementById(update.id).style.backgroundColor = update.color;
-})
+}})
 socket.on("updateSave",(item)=>{
     makeCard(item,item.userCreated);
 })
