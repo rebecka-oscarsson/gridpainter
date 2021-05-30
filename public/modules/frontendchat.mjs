@@ -48,8 +48,6 @@ export function chatFrontEnd(username, color, socket) {
 
      //Recives typing status from server
      socket.on("chatBubbleStatus", function (status) {
-        
-        console.log("testing status" + status)
 
         if(!document.querySelector(".message_item_typing")){
 
