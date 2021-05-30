@@ -75,7 +75,7 @@ socket.on("newTile", (update) => {
 
     //we get what tile was changed and update that tile on the front end
     document.getElementById(update.id).style.backgroundColor = update.color;
-}})
+})
 socket.on("updateSave",(item)=>{
     makeCard(item,item.userCreated);
 })
