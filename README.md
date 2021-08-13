@@ -1,3 +1,6 @@
+Gridpainter, ett spel av: 
+Björn Eriksson, Axel Pahne, Rebecka Oscarsson, Luiza Skowronska och Smári Steinar.
+
 För att starta projektet ska du:
 
 1. Klona ned repot
